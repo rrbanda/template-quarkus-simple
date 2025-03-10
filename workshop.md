@@ -109,9 +109,9 @@ The folder structure beloew represents a an example software template and in thi
 
 
 ### **What is `template.yaml`?**
-- `template.yaml` is a **Red Hat Developer Hub Software Template** that automates **project scaffolding**.
-- It defines **how new services are created** based on user input.
-- The template includes **parameters, actions (steps), and output** to generate, register, and deploy a service.
+The Software Templates part of Backstage is a tool that can help you create Components inside Backstage. By default, it has the ability to load skeletons of code, template in some variables, and then publish the template to some locations like GitHub or GitLab.
+
+Templates are stored in the Software Catalog under a kind Template. You can create your own templates with a small yaml definition which describes the template and its metadata, along with some input variables that your template will need, and then a list of actions which are then executed by the scaffolding service.
 
 ```yaml
 # Red Hat Developer Hub Software Template Definition
