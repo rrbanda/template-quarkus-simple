@@ -7,15 +7,15 @@ By the end of this session, participants will:
 - **Use the imported template from RHDH Software Catalog and create repos with necessary code that developer can start using to build further.**
 
 ---
-## 📜 Agenda
-| **Time** | **Activity** | **Why It’s Important** |
-|---------|-------------|----------------------|
-| **0-2 mins** | **Setting Context: Understanding Red Hat Developer Hub/Backstage Entities** | What are Templates and Components? (Quick, high-level intro) |
-| **2-4 mins** | **Understanding the Folder Structure** | Where do `template.yaml`, `catalog-info.yaml`, and the Quarkus skeleton fit? (Brief overview) |
-| **4-18 mins** | **Step 1: Build `template.yaml` Incrementally** | Define parameters, fetch boilerplate, create GitLab repo, register in Red Hat Developer Hub, deploy with ArgoCD. (Live coding) |
-| **18-26 mins** | **Step 2: Build `catalog-info.yaml` Incrementally** | Why does Red Hat Developer Hub need it? How does it relate to GitOps? (Live coding + quick test) |
-| **26-28 mins** | **Step 3: Importing and Registering in Red Hat Developer Hub (RHDH)** | How to manually register the service into RHDH. (Quick live demo) |
-| **28-30 mins** | **Step 4: Q&A + Customization Challenge** | Let participants tweak the template for real-world use cases. |
+## 📜 **Agenda**
+| **Time** | **Activity** | **Purpose** |
+|---------|-------------|------------|
+| **0-2 mins** | **Intro to RHDH/Backstage Entities** | What are Templates and Components? (Quick overview) |
+| **2-4 mins** | **Folder Structure** | Where `template.yaml`, `catalog-info.yaml`, and the Quarkus skeleton fit. |
+| **4-18 mins** | **Step 1: Build `template.yaml`** | Define parameters, fetch boilerplate, create repo, register in RHDH, deploy with ArgoCD. (Live coding) |
+| **18-26 mins** | **Step 2: Build `catalog-info.yaml`** | Why RHDH needs it? How it connects to GitOps.|
+| **26-28 mins** | **Step 3: Register in RHDH** | Manually import the service. (Quick demo) |
+| **28-30 mins** | **Step 4: Q&A + Customization** | Let participants tweak the template. |
 
 ---
 
