@@ -3,7 +3,7 @@
 ## 📌 Goal
 Before writing any code, let's understand how **Backstage** organizes software components using **entities**.
 
-## ✅ What are Backstage Entities?
+## What are Backstage Entities?
 
 Everything inside Backstage is considered an **entity**.  
 An entity represents a **real-world object**, such as:
@@ -15,7 +15,7 @@ An entity represents a **real-world object**, such as:
 
 Entities in Backstage are defined using **YAML files**, which Backstage reads and organizes in the **Software Catalog**.
 
-## ✅ Key Entities We Will Work With
+## Key Entities We Will Work With
 
 In this demo, we will use **three core entities**:
 
@@ -26,7 +26,7 @@ In this demo, we will use **three core entities**:
 | **API**         | `kind: API`      | Describes an **exposed API** that other services can use. |
 
 
-## ✅ How Do These Work Together?
+## How Do These Work Together?
 
 1️⃣ **A `Template` helps generate a `Component`.**  
 2️⃣ **A `Component` represents a real microservice in production.**  
