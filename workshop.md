@@ -1,6 +1,6 @@
 # **🎯 Workshop Goal**
 By the end of this session, participants will:
-- **Learn how to create a Backstage Software Template from scratch.**
+- **Learn how to create a Red Hat Developer Hub Software Template from scratch.**
 - **Understand the folder structure and role of each file.**
 - **Build `template.yaml` and `catalog-info.yaml`.**
 - **Register and import services in Red Hat Developer Hub (RHDH).**
@@ -9,22 +9,22 @@ By the end of this session, participants will:
 ## 📜 Agenda
 | **Time** | **Activity** | **Why It’s Important** |
 |---------|-------------|----------------------|
-| **0-2 mins** | **Setting Context: Understanding Backstage Entities** | What are Templates and Components? (Quick, high-level intro) |
+| **0-2 mins** | **Setting Context: Understanding Red Hat Developer Hub/Backstage Entities** | What are Templates and Components? (Quick, high-level intro) |
 | **2-4 mins** | **Understanding the Folder Structure** | Where do `template.yaml`, `catalog-info.yaml`, and the Quarkus skeleton fit? (Brief overview) |
-| **4-18 mins** | **Step 1: Build `template.yaml` Incrementally** | Define parameters, fetch boilerplate, create GitLab repo, register in Backstage, deploy with ArgoCD. (Live coding) |
-| **18-26 mins** | **Step 2: Build `catalog-info.yaml` Incrementally** | Why does Backstage need it? How does it relate to GitOps? (Live coding + quick test) |
+| **4-18 mins** | **Step 1: Build `template.yaml` Incrementally** | Define parameters, fetch boilerplate, create GitLab repo, register in Red Hat Developer Hub, deploy with ArgoCD. (Live coding) |
+| **18-26 mins** | **Step 2: Build `catalog-info.yaml` Incrementally** | Why does Red Hat Developer Hub need it? How does it relate to GitOps? (Live coding + quick test) |
 | **26-28 mins** | **Step 3: Importing and Registering in Red Hat Developer Hub (RHDH)** | How to manually register the service into RHDH. (Quick live demo) |
 | **28-30 mins** | **Step 4: Q&A + Customization Challenge** | Let participants tweak the template for real-world use cases. |
 
 
-# 🛠 Understanding Backstage Entities Before We Start
+# 🛠 Understanding Red Hat Developer Hub/Backstage Entities Before We Start
 
 ## 📌 Goal
-Before writing any code, let's understand how **Backstage** organizes software components using **entities**.
+Before writing any code, let's understand how **Red Hat Developer Hub** organizes software components using **entities**.
 
-## What are Backstage Entities?
+## What are Red Hat Developer Hub Entities?
 
-Everything inside Backstage is considered an **entity**.  
+Everything inside Red Hat Developer Hub is considered an **entity**.  
 An entity represents a **real-world object**, such as:
 
 - A **microservice**
@@ -32,7 +32,7 @@ An entity represents a **real-world object**, such as:
 - A **CI/CD pipeline**
 - A **team or user group**
 
-Entities in Backstage are defined using **YAML files**, which Backstage reads and organizes in the **Software Catalog**.
+Entities in Red Hat Developer Hub are defined using **YAML files**, which Red Hat Developer Hub reads and organizes in the **Software Catalog**.
 
 ## Key Entities We Will Work With
 
@@ -40,8 +40,8 @@ In this demo, we will use **three core entities**:
 
 | **Entity Type**  | **Kind**         | **Purpose** |
 |------------------|-----------------|-------------|
-| **Template**     | `kind: Template` | Defines how **new services are created** from a Backstage form. |
-| **Component**    | `kind: Component` | Represents a **running microservice** in Backstage. |
+| **Template**     | `kind: Template` | Defines how **new services are created** from a Red Hat Developer Hub form. |
+| **Component**    | `kind: Component` | Represents a **running microservice** in Red Hat Developer Hub. |
 | **API**         | `kind: API`      | Describes an **exposed API** that other services can use. |
 
 
@@ -54,19 +54,19 @@ In this demo, we will use **three core entities**:
 
 ## 📌 Example Workflow:
 
-- A **developer fills out a Backstage form** → The **Template** creates a **new Git repository** with Quarkus boilerplate.
-- The service is **registered as a `Component` in Backstage** and linked to a **Kubernetes deployment**.
-- If the service **exposes an API**, it is also **registered as an `API` entity** in Backstage.
+- A **developer fills out a Red Hat Developer Hub form** → The **Template** creates a **new Git repository** with Quarkus boilerplate.
+- The service is **registered as a `Component` in Red Hat Developer Hub** and linked to a **Kubernetes deployment**.
+- If the service **exposes an API**, it is also **registered as an `API` entity** in Red Hat Developer Hub.
 
 
-🚀 **Now that we understand these concepts, let’s build our Backstage Software Template step by step!**
+🚀 **Now that we understand these concepts, let’s build our Red Hat Developer Hub Software Template step by step!**
 
 # **🛠 Step 1: Setting Up the Demo**
 
 ### **Prerequisites**
 Before starting, ensure you have:
-- **VS Code open** with your Backstage repository.
-- **A running Backstage or Red Hat Developer Hub (RHDH) instance**.
+- **VS Code open** with your Red Hat Developer Hub repository.
+- **A running Red Hat Developer Hub or Red Hat Developer Hub (RHDH) instance**.
 - **A working GitLab (or GitHub) instance**.
 - **ArgoCD configured** if testing deployments.
 
@@ -84,9 +84,9 @@ The folder structure beloew represents a an example software template and in thi
 │   ├── 📁 helm                 # Helm charts for deployment
 
 ## ├── 📁 skeleton
-│   ├── 📄 catalog-info.yaml     # Service metadata for Backstage
+│   ├── 📄 catalog-info.yaml     # Service metadata for Red Hat Developer Hub
 │   ├── 📄 README.md             # Documentation for the generated service
-│   ├── 📁 docs                  # TechDocs content for Backstage
+│   ├── 📁 docs                  # TechDocs content for Red Hat Developer Hub
 │   ├── 📄 mvnw                  # Maven wrapper script (Linux/Mac)
 │   ├── 📄 mvnw.cmd              # Maven wrapper script (Windows)
 │   ├── 📄 openapi.yaml          # OpenAPI specification for API registration
@@ -94,22 +94,22 @@ The folder structure beloew represents a an example software template and in thi
 │   ├── 📁 src                   # Quarkus service source code
 │   ├── 📁 target                # Compiled build artifacts
 
-## ├── 📄 template.yaml           # Backstage template definition
+## ├── 📄 template.yaml           # Red Hat Developer Hub template definition
 ## ├── 📄 README.md               # Documentation for the template
 
 
 ```
 
 ## **🛠 Step 2: Start with a Blank `template.yaml`**
-📌 **Goal**: Explain that Backstage uses templates to scaffold services and that we will **incrementally build `template.yaml`**.
+📌 **Goal**: Explain that Red Hat Developer Hub uses templates to scaffold services and that we will **incrementally build `template.yaml`**.
 
 ### **Instructions**
-1. Open **VS Code** and navigate to your Backstage template repository.
+1. Open **VS Code** and navigate to your Red Hat Developer Hub Software template repository.
 2. **Create a new file**: `template.yaml`
 3. **Start with a blank template** and **add basic comments**:
 
 ```yaml
-# Backstage Software Template Definition
+# Red Hat Developer Hub Software Template Definition
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
@@ -127,19 +127,19 @@ spec:
 ```
  ### Explanation
 ### **What is `template.yaml`?**
-- `template.yaml` is a **Backstage Software Template** that automates **project scaffolding**.
+- `template.yaml` is a **Red Hat Developer Hub Software Template** that automates **project scaffolding**.
 - It defines **how new services are created** based on user input.
 - The template includes **parameters, actions (steps), and output** to generate, register, and deploy a service.
 
 ### **Why do we need `apiVersion`, `kind`, and `metadata`?**
-- **`apiVersion`**: Specifies the **version of the Backstage API** being used (`scaffolder.backstage.io/v1beta3` ensures compatibility with Backstage scaffolding).
-- **`kind`**: Defines the **type of entity** (`Template`) so Backstage knows how to process it.
+- **`apiVersion`**: Specifies the **version of the Red Hat Developer Hub API** being used (`scaffolder.backstage.io/v1beta3` ensures compatibility with Red Hat Developer Hub scaffolding).
+- **`kind`**: Defines the **type of entity** (`Template`) so Red Hat Developer Hub knows how to process it.
 - **`metadata`**: Provides essential **identifiers and descriptions**, such as:
   - **`name`** → Unique identifier for the template.
   - **`title` & `description`** → Human-readable details.
-  - **`tags`** → Helps categorize and filter templates in the Backstage UI.
+  - **`tags`** → Helps categorize and filter templates in the Red Hat Developer Hub UI.
 
-🚀 **In short:** `template.yaml` tells Backstage **what to create, how to create it, and what metadata to assign** in the Software Catalog.
+🚀 **In short:** `template.yaml` tells Red Hat Developer Hub **what to create, how to create it, and what metadata to assign** in the Software Catalog.
 
 ## **🛠 Step 3: Define User Input Parameters**
 📌 **Goal**: Collect user input for the service.
@@ -175,8 +175,8 @@ spec:
 - Without `parameters`, all generated services would be **identical and static**, limiting flexibility.  
 
 ### **What is `EntityNamePicker`?**  
-- `EntityNamePicker` is a **UI field** that helps users select a **valid component name** in Backstage.  
-- It ensures **naming consistency** by validating the input against Backstage's **naming rules**.  
+- `EntityNamePicker` is a **UI field** that helps users select a **valid component name** in Red Hat Developer Hub.  
+- It ensures **naming consistency** by validating the input against Red Hat Developer Hub's **naming rules**.  
 - This prevents **duplicate names** or incorrect formats before a service is created.  
 
 🚀 **In short:** `parameters` make templates flexible, and `EntityNamePicker` ensures valid service names.
@@ -207,8 +207,8 @@ spec:
 - This eliminates the need for developers to **manually clone or copy boilerplate code**.  
 
 ### **How does `${{ parameters.component_id }}` work?**  
-- `${{ parameters.component_id }}` is a **templating expression** in Backstage that **injects user-provided input** into the template.  
-- When a user fills out the **Backstage form**, the value of `component_id` is dynamically **substituted** in places like file paths, names, or configurations.  
+- `${{ parameters.component_id }}` is a **templating expression** in Red Hat Developer Hub that **injects user-provided input** into the template.  
+- When a user fills out the **Red Hat Developer Hub form**, the value of `component_id` is dynamically **substituted** in places like file paths, names, or configurations.  
 - This ensures that **each service has a unique name** based on the user’s input.  
 
 🚀 **In short:** `fetch:template` automates code scaffolding, and `${{ parameters.component_id }}` dynamically customizes the generated service.
@@ -243,12 +243,12 @@ spec:
 
 🚀 **In short:** `publish:gitlab` automates Git operations, while `sourcePath` ensures only the correct files are committed.
 
-**⏩ Test It in Backstage** → Run the template and check GitLab.
+**⏩ Test It in Red Hat Developer Hub** → Run the template and check GitLab.
 
 ---
 
-## **🛠 Step 6: Register the Service in Backstage**
-📌 **Goal**: Add the service to the **Backstage catalog**.
+## **🛠 Step 6: Register the Service in Red Hat Developer Hub**
+📌 **Goal**: Add the service to the **Red Hat Developer Hub Software catalog**.
 
 ```yaml
     - id: register
@@ -262,17 +262,17 @@ spec:
 ### Explanation
 - Why is this necessary?
 
-**⏩ Test It in Backstage** → The new service should appear in the catalog.
+**⏩ Test It in Red Hat Developer Hub** → The new service should appear in the catalog.
 
 
 ## **🛠 Step 6: Build `catalog-info.yaml` Incrementally**
 
-📌 **Goal**: Register the service in Backstage by **building `catalog-info.yaml` step by step**.
+📌 **Goal**: Register the service in Red Hat Developer Hub by **building `catalog-info.yaml` step by step**.
 
 
 ### **1️⃣ Start with a Blank `catalog-info.yaml`**
 
-📌 **Why?** Every service created by Backstage **must be registered** in the catalog.
+📌 **Why?** Every service created by Red Hat Developer Hub **must be registered** in the catalog.
 
 #### **Instructions**
 
@@ -294,11 +294,11 @@ spec:
 ### Explanation
 
 -   **What is `kind: Component`?**
-    -   It tells Backstage that **this entity represents a microservice**.
+    -   It tells Red Hat Developer Hub that **this entity represents a microservice**.
 -   **What is `lifecycle: development`?**
     -   It shows that the service is **still being developed, not yet in production**.
 -   **Why do we need `owner`?**
-    -   Backstage **requires every service to have an owner** for accountability.
+    -   Red Hat Developer Hub **requires every service to have an owner** for accountability.
 
 ----------
 
@@ -325,13 +325,13 @@ metadata:
 -   **What does `description` do?**
     -   It provides **a short summary of the service** so developers can understand what it does.
 -   **Why add `tags`?**
-    -   It makes the service **easier to find** inside Backstage.
+    -   It makes the service **easier to find** inside Red Hat Developer Hub.
 
 ----------
 
 ### **3️⃣ Add Annotations for GitOps and CI/CD**
 
-📌 **Why?** These annotations **link Backstage to GitLab, ArgoCD, and Kubernetes**.
+📌 **Why?** These annotations **link Red Hat Developer Hub to GitLab, ArgoCD, and Kubernetes**.
 
 #### **Update `annotations` section**:
 
@@ -348,11 +348,11 @@ metadata:
 ###Explanation
 
 -   **Why do we need `argocd/app-selector`?**
-    -   This **links the service to ArgoCD**, allowing Backstage to track GitOps deployments.
+    -   This **links the service to ArgoCD**, allowing Red Hat Developer Hub to track GitOps deployments.
 -   **What is `backstage.io/source-location`?**
-    -   It tells Backstage **where the service’s source code lives** (GitLab, GitHub, etc.).
+    -   It tells Red Hat Developer Hub **where the service’s source code lives** (GitLab, GitHub, etc.).
 -   **What is `janus-idp.io/tekton`?**
-    -   It **enables CI/CD tracking in Backstage** for Tekton pipelines.
+    -   It **enables CI/CD tracking in Red Hat Developer Hub** for Tekton pipelines.
 
 ----------
 
@@ -379,9 +379,9 @@ metadata:
 
 ----------
 
-### **5️⃣ Register the API in Backstage**
+### **5️⃣ Register the API in Red Hat Developer Hub**
 
-📌 **Why?** If the service **exposes an API**, we need to **document it** in Backstage.
+📌 **Why?** If the service **exposes an API**, we need to **document it** in Red Hat Developer Hub.
 
 #### **Add API registration to `catalog-info.yaml`**:
 
@@ -404,24 +404,33 @@ spec:
 ```
 ### Explanation
 
--   **What is `kind: API`?**
-    -   It tells Backstage that **this is an API** (not just a microservice).
--   **What is `definition: $text: ./openapi.yaml`?**
-    -   It **links the API to an OpenAPI spec file**, allowing Backstage to display **API documentation**.
+#### **What is `kind: API`?**  
+- The `kind: API` declaration in **`catalog-info.yaml`** tells Red Hat Developer Hub that the entity being registered is an **API** rather than a standard microservice (`kind: Component`).  
+- This allows Red Hat Developer Hub to manage the API separately from services, making it **discoverable, reusable, and integrable** with other systems.  
+- APIs registered this way can be **documented, versioned, and consumed** by other teams directly from the Red Hat Developer Hub UI.  
 
+#### **What is `definition: $text: ./openapi.yaml`?**  
+- This field **links the API entity** to an **OpenAPI specification** stored in `openapi.yaml`.  
+- It enables **automatic API documentation rendering** in Red Hat Developer Hub, allowing developers to view, interact with, and test the API within the Red Hat Developer Hub UI.  
+- This helps teams maintain **consistency in API documentation** while ensuring APIs are easily discoverable and accessible.  
 
-te → Register Component**.
-2. Enter the **Git repository URL**.
-3. Click **Analyze → Import**.
+#### **Why does RHDH need this step?**  
+- **Red Hat Developer Hub (RHDH)** uses **`catalog-info.yaml`** to recognize and register software components and APIs into its **Software Catalog**.  
+- Manually importing a component ensures that the service/API is **visible, traceable, and manageable** within the enterprise developer portal.  
+- The registration process allows **teams to standardize API documentation**, monitor API usage, and enable seamless **API lifecycle management** within RHDH.  
 
-### Explanation
-- Why does RHDH need this step?
+#### **How to Register an API in RHDH?**  
+1. Navigate to **"Register Component"** in RHDH.  
+2. Enter the **Git repository URL** where `catalog-info.yaml` is stored.  
+3. Click **Analyze → Import** to add the API to the catalog.  
+
+This process ensures **all APIs and services are properly documented and tracked** within RHDH, improving discoverability and governance. 🚀
 
 ---
 
 ## **🎯 Final Steps**
 1️⃣ **Review the full `template.yaml` and `catalog-info.yaml`.**  
-2️⃣ **Run a final test in Backstage.**  
+2️⃣ **Run a final test in template editor UI for Red Hat Developer Hub .**  
 3️⃣ **Open Q&A and let participants modify the template.**  
 
 🚀 **Now you have the ultimate live demo!** Would you like any final refinements?
