@@ -7,7 +7,6 @@ By the end of this session, participants will:
 - **Register and import services in Red Hat Developer Hub (RHDH).**
 - **Deploy a microservice using ArgoCD.**
 
----
 ## 📜 Agenda
 | **Time** | **Activity** | **Why It’s Important** |
 |---------|-------------|----------------------|
@@ -24,9 +23,7 @@ By the end of this session, participants will:
 ## 📌 Goal
 Before writing any code, let's understand how **Backstage** organizes software components using **entities**.
 
----
-
-## ✅ What are Backstage Entities?
+## What are Backstage Entities?
 
 Everything inside Backstage is considered an **entity**.  
 An entity represents a **real-world object**, such as:
@@ -38,9 +35,7 @@ An entity represents a **real-world object**, such as:
 
 Entities in Backstage are defined using **YAML files**, which Backstage reads and organizes in the **Software Catalog**.
 
----
-
-## ✅ Key Entities We Will Work With
+## Key Entities We Will Work With
 
 In this demo, we will use **three core entities**:
 
@@ -50,15 +45,13 @@ In this demo, we will use **three core entities**:
 | **Component**    | `kind: Component` | Represents a **running microservice** in Backstage. |
 | **API**         | `kind: API`      | Describes an **exposed API** that other services can use. |
 
----
 
-## ✅ How Do These Work Together?
+## How Do These Work Together?
 
 1️⃣ **A `Template` helps generate a `Component`.**  
 2️⃣ **A `Component` represents a real microservice in production.**  
 3️⃣ **An `API` is linked to a `Component` if it provides a public API.**
 
----
 
 ## 📌 Example Workflow:
 
@@ -66,22 +59,18 @@ In this demo, we will use **three core entities**:
 - The service is **registered as a `Component` in Backstage** and linked to a **Kubernetes deployment**.
 - If the service **exposes an API**, it is also **registered as an `API` entity** in Backstage.
 
----
 
 🚀 **Now that we understand these concepts, let’s build our Backstage Software Template step by step!**
 
-
-
-
 # **🛠 Step 1: Setting Up the Live Coding Demo**
-### ✅ **Prerequisites**
+### **Prerequisites**
 Before starting, ensure you have:
 - **VS Code open** with your Backstage repository.
 - **A running Backstage or Red Hat Developer Hub (RHDH) instance**.
 - **A working GitLab (or GitHub) instance**.
 - **ArgoCD configured** if testing deployments.
 
----
+
 
 #  🛠 Understanding the Folder Structure
 
@@ -98,7 +87,6 @@ Before starting, ensure you have:
 ├── 📄 README.md                 # Documentation for the template
 ```
 
----
 ## **🛠 Step 2: Start with a Blank `template.yaml`**
 📌 **Goal**: Explain that Backstage uses templates to scaffold services and that we will **incrementally build `template.yaml`**.
 
@@ -125,11 +113,10 @@ spec:
   type: service
 ```
 
-✅ **Explain**:
+ **Explanation**:
 - What is `template.yaml`?  
 - Why do we need `apiVersion`, `kind`, and `metadata`?
 
----
 
 ## **🛠 Step 3: Define User Input Parameters**
 📌 **Goal**: Collect user input for the service.
@@ -158,7 +145,7 @@ spec:
           default: com.redhat.rhdh
 ```
 
-✅ **Explain**:
+**Explanation**:
 - Why do we need parameters?
 - What is `EntityNamePicker`?
 
@@ -182,7 +169,7 @@ spec:
         targetPath: ./${{ user.entity.metadata.name }}-${{ parameters.component_id }}
 ```
 
-✅ **Explain**:
+**Explanation**:
 - Why use `fetch:template`?
 - How does `${{ parameters.component_id }}` work?
 
@@ -202,7 +189,7 @@ spec:
         sourcePath: ./${{ user.entity.metadata.name }}-${{parameters.component_id}}
 ```
 
-✅ **Explain**:
+**Explanation**:
 - Why use `publish:gitlab`?
 - What does `sourcePath` do?
 
@@ -222,20 +209,16 @@ spec:
         catalogInfoPath: "/catalog-info.yaml"
 ```
 
-✅ **Explain**:
+**Explanation**:
 - Why is this necessary?
 
 **⏩ Test It in Backstage** → The new service should appear in the catalog.
-
-
----
 
 
 ## **🛠 Step 6: Build `catalog-info.yaml` Incrementally**
 
 📌 **Goal**: Register the service in Backstage by **building `catalog-info.yaml` step by step**.
 
-----------
 
 ### **1️⃣ Start with a Blank `catalog-info.yaml`**
 
@@ -258,7 +241,7 @@ spec:
 
 ```
 
-✅ **Explain**:
+**Explanation**:
 
 -   **What is `kind: Component`?**
     -   It tells Backstage that **this entity represents a microservice**.
@@ -287,7 +270,7 @@ metadata:
 
 ```
 
-✅ **Explain**:
+**Explanation**:
 
 -   **What does `description` do?**
     -   It provides **a short summary of the service** so developers can understand what it does.
@@ -312,8 +295,7 @@ metadata:
     gitlab.com/project-slug: ${{values.destination}}
 
 ```
-
-✅ **Explain**:
+**Explanation**:
 
 -   **Why do we need `argocd/app-selector`?**
     -   This **links the service to ArgoCD**, allowing Backstage to track GitOps deployments.
@@ -340,8 +322,7 @@ metadata:
       icon: web
 
 ```
-
-✅ **Explain**:
+**Explanation**:
 
 -   **Why add these links?**
     -   Developers can click these **to open the service in OpenShift Dev Spaces** for live coding.
@@ -371,25 +352,19 @@ spec:
     $text: ./openapi.yaml
 
 ```
-
-✅ **Explain**:
+**Explanation**:
 
 -   **What is `kind: API`?**
     -   It tells Backstage that **this is an API** (not just a microservice).
 -   **What is `definition: $text: ./openapi.yaml`?**
     -   It **links the API to an OpenAPI spec file**, allowing Backstage to display **API documentation**.
 
-----------
-
-
-
----
 
 te → Register Component**.
 2. Enter the **Git repository URL**.
 3. Click **Analyze → Import**.
 
-✅ **Explain**:
+**Explanation**:
 - Why does RHDH need this step?
 
 ---
