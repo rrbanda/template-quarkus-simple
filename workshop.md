@@ -34,6 +34,25 @@ Before starting, ensure you have:
 
 ---
 
+---
+
+
+#  🛠 Understanding the Folder Structure
+
+```
+# 📁 template-quarkus-simple-main
+
+## ├── 📁 skeleton
+│   ├── 📄 catalog-info.yaml   # Service metadata for Backstage
+│   ├── 📁 src                 # Quarkus service source code
+│   ├── 📄 pom.xml             # Maven build file
+│   ├── 📄 application.properties # Application configuration
+│
+├── 📄 template.yaml            # Backstage template definition
+├── 📄 README.md                 # Documentation for the template
+```
+
+---
 ## **🛠 Step 2: Start with a Blank `template.yaml`**
 📌 **Goal**: Explain that Backstage uses templates to scaffold services and that we will **incrementally build `template.yaml`**.
 
