@@ -126,7 +126,7 @@ spec:
   owner: rhdh
   type: service
 ```
- **Explanation**:
+ ### Explanation
 ### **What is `template.yaml`?**
 - `template.yaml` is a **Backstage Software Template** that automates **project scaffolding**.
 - It defines **how new services are created** based on user input.
@@ -169,7 +169,7 @@ spec:
           default: com.redhat.rhdh
 ```
 
-**Explanation**:
+### Explanation
 ### **Why do we need `parameters`?**  
 - `parameters` allow users to **input values** before generating a service.  
 - These values are used to **customize the service** dynamically (e.g., setting the name, group ID, or repository host).  
@@ -201,7 +201,7 @@ spec:
         targetPath: ./${{ user.entity.metadata.name }}-${{ parameters.component_id }}
 ```
 
-**Explanation**:
+### Explanation
 ### **Why use `fetch:template`?**  
 - `fetch:template` **copies predefined files** (e.g., a Quarkus project skeleton) into the new service directory.  
 - It **ensures consistency** by using a standard project structure.  
@@ -229,7 +229,7 @@ spec:
         sourcePath: ./${{ user.entity.metadata.name }}-${{parameters.component_id}}
 ```
 
-**Explanation**:
+### Explanation
 
 ### **Why use `publish:gitlab`?**  
 - `publish:gitlab` **automates repository creation and code push** to GitLab.  
@@ -260,7 +260,7 @@ spec:
         catalogInfoPath: "/catalog-info.yaml"
 ```
 
-**Explanation**:
+### Explanation
 - Why is this necessary?
 
 **⏩ Test It in Backstage** → The new service should appear in the catalog.
@@ -292,7 +292,7 @@ spec:
 
 ```
 
-**Explanation**:
+### Explanation
 
 -   **What is `kind: Component`?**
     -   It tells Backstage that **this entity represents a microservice**.
@@ -321,7 +321,7 @@ metadata:
 
 ```
 
-**Explanation**:
+###Explanation
 
 -   **What does `description` do?**
     -   It provides **a short summary of the service** so developers can understand what it does.
@@ -346,7 +346,7 @@ metadata:
     gitlab.com/project-slug: ${{values.destination}}
 
 ```
-**Explanation**:
+###Explanation
 
 -   **Why do we need `argocd/app-selector`?**
     -   This **links the service to ArgoCD**, allowing Backstage to track GitOps deployments.
@@ -373,7 +373,7 @@ metadata:
       icon: web
 
 ```
-**Explanation**:
+###Explanation
 
 -   **Why add these links?**
     -   Developers can click these **to open the service in OpenShift Dev Spaces** for live coding.
@@ -403,7 +403,7 @@ spec:
     $text: ./openapi.yaml
 
 ```
-**Explanation**:
+### Explanation
 
 -   **What is `kind: API`?**
     -   It tells Backstage that **this is an API** (not just a microservice).
@@ -415,7 +415,7 @@ te → Register Component**.
 2. Enter the **Git repository URL**.
 3. Click **Analyze → Import**.
 
-**Explanation**:
+### Explanation
 - Why does RHDH need this step?
 
 ---
