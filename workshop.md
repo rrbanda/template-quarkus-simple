@@ -24,8 +24,7 @@ Before writing any code, let's understand how **Red Hat Developer Hub** organize
 
 ## What are Red Hat Developer Hub Entities?
 
-Everything inside Red Hat Developer Hub is considered an **entity**.  
-An entity represents a **real-world object**, such as:
+Everything inside Red Hat Developer Hub is considered an **entity**. An entity represents a **real-world object**, such as:
 
 - A **microservice**
 - An **API**
