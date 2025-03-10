@@ -156,12 +156,20 @@ spec:
 ```
 
 **Explanation**:
-- Why do we need parameters?
-- What is `EntityNamePicker`?
+### **Why do we need `parameters`?**  
+- `parameters` allow users to **input values** before generating a service.  
+- These values are used to **customize the service** dynamically (e.g., setting the name, group ID, or repository host).  
+- Without `parameters`, all generated services would be **identical and static**, limiting flexibility.  
 
-**⏩ Test It in Backstage** → Run the template and check the form UI.
+### **What is `EntityNamePicker`?**  
+- `EntityNamePicker` is a **UI field** that helps users select a **valid component name** in Backstage.  
+- It ensures **naming consistency** by validating the input against Backstage's **naming rules**.  
+- This prevents **duplicate names** or incorrect formats before a service is created.  
 
----
+🚀 **In short:** `parameters` make templates flexible, and `EntityNamePicker` ensures valid service names.
+
+**⏩ Test It in RHDH Template editor ** → Paste the template and check the form UI.
+
 
 ## **🛠 Step 4: Fetch Quarkus Boilerplate Code**
 📌 **Goal**: Copy a **predefined Quarkus project**.
