@@ -17,7 +17,7 @@ By the end of this session, participants will:
 | **28-30 mins** | **Step 4: Q&A + Customization Challenge** | Let participants tweak the template for real-world use cases. |
 
 
-# 🛠 Understanding Red Hat Developer Hub/Backstage Entities Before We Start
+# 🛠 Understanding Backstage Entities Before We Start
 
 ## 📌 Goal
 Before writing any code, let's understand how **Red Hat Developer Hub** organizes software components using **entities**.
