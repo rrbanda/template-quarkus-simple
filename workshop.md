@@ -62,7 +62,8 @@ In this demo, we will use **three core entities**:
 
 🚀 **Now that we understand these concepts, let’s build our Backstage Software Template step by step!**
 
-# **🛠 Step 1: Setting Up the Live Coding Demo**
+# **🛠 Step 1: Setting Up the Demo**
+
 ### **Prerequisites**
 Before starting, ensure you have:
 - **VS Code open** with your Backstage repository.
@@ -216,8 +217,19 @@ spec:
 ```
 
 **Explanation**:
-- Why use `publish:gitlab`?
-- What does `sourcePath` do?
+
+### **Why use `publish:gitlab`?**  
+- `publish:gitlab` **automates repository creation and code push** to GitLab.  
+- It eliminates the need for **manual Git operations** (`git init`, `git add`, `git commit`, `git push`).  
+- This ensures that every generated service has **a properly initialized and version-controlled repository**.  
+
+### **What does `sourcePath` do?**  
+- `sourcePath` **defines which directory** should be pushed to the repository.  
+- It prevents **unnecessary files** (like template metadata) from being included in the service repo.  
+- Example:  
+  - If `sourcePath: ./generated-service`, only the contents of `generated-service/` are pushed to GitLab.  
+
+🚀 **In short:** `publish:gitlab` automates Git operations, while `sourcePath` ensures only the correct files are committed.
 
 **⏩ Test It in Backstage** → Run the template and check GitLab.
 
