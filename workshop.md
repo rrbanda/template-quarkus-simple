@@ -99,7 +99,7 @@ The folder structure beloew represents a an example software template and in thi
 
 ```
 
-### ** A quick overview of `template.yaml`?**
+### **A quick overview of `template.yaml`?**
 The Software Templates part of Backstage is a tool that can help you create Components inside Backstage. By default, it has the ability to load skeletons of code, template in some variables, and then publish the template to some locations like GitHub or GitLab.
 
 Templates are stored in the Software Catalog under a kind Template. You can create your own templates with a small yaml definition which describes the template and its metadata, along with some input variables that your template will need, and then a list of actions which are then executed by the scaffolding service.
