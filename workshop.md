@@ -4,7 +4,7 @@ By the end of this session, participants will:
 - **Understand the folder structure and role of each file.**
 - **Build `template.yaml` and `catalog-info.yaml`.**
 - **Register and import services in Red Hat Developer Hub (RHDH).**
-- **Use template from RHDH Software Catalog and create repos with necessary code that developer can start using to build further.**
+- **Use the imported template from RHDH Software Catalog and create repos with necessary code that developer can start using to build further.**
 
 ## 📜 Agenda
 | **Time** | **Activity** | **Why It’s Important** |
