@@ -19,11 +19,10 @@ By the end of this session, participants will:
 
 ---
 
-# 🛠 Understanding Backstage Entities Before We Start
+## 🛠 Understanding Backstage Entities Before We Start
 
-## Before writing any code, let's understand how **Red Hat Developer Hub** organizes software components using **entities**.
+#### Before writing any code, let's understand how **Red Hat Developer Hub** organizes software components using **entities**.
 
-## **What are Red Hat Developer Hub Entities?**  
 Everything inside **Red Hat Developer Hub (RHDH)** is considered an **entity**.  
 An **entity** represents a **real-world object** that is **registered and managed within the Software Catalog**.  
 
