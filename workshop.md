@@ -48,9 +48,9 @@ In this demo, we will use **three core entities**:
 
 ## How Do These Work Together?
 
-1️⃣ **A `Template` helps generate a `Component`.**  
-2️⃣ **A `Component` represents a real microservice in production.**  
-3️⃣ **An `API` is linked to a `Component` if it provides a public API.**
+**A `Template` helps generate a `Component`.**  
+**A `Component` represents a real microservice in production.**  
+**An `API` is linked to a `Component` if it provides a public API.**
 
 
 ## 📌 Example Workflow:
