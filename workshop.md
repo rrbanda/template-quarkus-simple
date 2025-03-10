@@ -432,4 +432,3 @@ This process ensures **all APIs and services are properly documented and tracked
 2️⃣ **Run a final test in template editor UI for Red Hat Developer Hub .**  
 3️⃣ **Open Q&A and let participants modify the template.**  
 
-🚀 **Now you have the ultimate live demo!** Would you like any final refinements?
