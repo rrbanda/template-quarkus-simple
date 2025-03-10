@@ -75,17 +75,30 @@ Before starting, ensure you have:
 
 #  🛠 Understanding the Folder Structure
 
+The folder structure beloew represents a an example software template and in this regard we assume that the code for quarkus service, manifests is already written for the purposes of focusing on developer hub related elemnents of a software template 
+
 ```
 # 📁 template-quarkus-simple-main
 
+## ├── 📁 manifests
+│   ├── 📁 argocd               # ArgoCD application definitions
+│   ├── 📁 helm                 # Helm charts for deployment
+
 ## ├── 📁 skeleton
-│   ├── 📄 catalog-info.yaml   # Service metadata for Backstage
-│   ├── 📁 src                 # Quarkus service source code
-│   ├── 📄 pom.xml             # Maven build file
-│   ├── 📄 application.properties # Application configuration
-│
-├── 📄 template.yaml            # Backstage template definition
-├── 📄 README.md                 # Documentation for the template
+│   ├── 📄 catalog-info.yaml     # Service metadata for Backstage
+│   ├── 📄 README.md             # Documentation for the generated service
+│   ├── 📁 docs                  # TechDocs content for Backstage
+│   ├── 📄 mvnw                  # Maven wrapper script (Linux/Mac)
+│   ├── 📄 mvnw.cmd              # Maven wrapper script (Windows)
+│   ├── 📄 openapi.yaml          # OpenAPI specification for API registration
+│   ├── 📄 pom.xml               # Maven build file
+│   ├── 📁 src                   # Quarkus service source code
+│   ├── 📁 target                # Compiled build artifacts
+
+## ├── 📄 template.yaml           # Backstage template definition
+## ├── 📄 README.md               # Documentation for the template
+
+
 ```
 
 ## **🛠 Step 2: Start with a Blank `template.yaml`**
