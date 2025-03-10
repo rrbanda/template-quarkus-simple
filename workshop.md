@@ -1,4 +1,4 @@
-# **🎯 Learning Software templates using an example quarkus service **
+# **🎯Learning Software templates using an example quarkus service**
 By the end of this session, participants will:
 - **Learn how to create a Red Hat Developer Hub Software Template from scratch.**
 - **Understand the folder structure and role of each file.**
