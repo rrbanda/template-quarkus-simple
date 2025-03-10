@@ -107,6 +107,12 @@ The folder structure beloew represents a an example software template and in thi
 2. **Create a new file**: `template.yaml`
 3. **Start with a blank template** and **add basic comments**:
 
+
+### **What is `template.yaml`?**
+- `template.yaml` is a **Red Hat Developer Hub Software Template** that automates **project scaffolding**.
+- It defines **how new services are created** based on user input.
+- The template includes **parameters, actions (steps), and output** to generate, register, and deploy a service.
+
 ```yaml
 # Red Hat Developer Hub Software Template Definition
 apiVersion: scaffolder.backstage.io/v1beta3
