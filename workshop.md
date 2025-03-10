@@ -1,11 +1,11 @@
 # **🎯 Workshop Goal**
 By the end of this session, participants will:
-- ✅ **Learn how to create a Backstage Software Template from scratch.**
-- ✅ **Understand the folder structure and role of each file.**
-- ✅ **Build `template.yaml` and `catalog-info.yaml`.**
-- ✅ **Automate Git repo creation and GitOps deployment.**
-- ✅ **Register and import services in Red Hat Developer Hub (RHDH).**
-- ✅ **Deploy a microservice using ArgoCD.**
+- **Learn how to create a Backstage Software Template from scratch.**
+- **Understand the folder structure and role of each file.**
+- **Build `template.yaml` and `catalog-info.yaml`.**
+- **Automate Git repo creation and GitOps deployment.**
+- **Register and import services in Red Hat Developer Hub (RHDH).**
+- **Deploy a microservice using ArgoCD.**
 
 ---
 ## 📜 Agenda
@@ -18,28 +18,60 @@ By the end of this session, participants will:
 | **26-28 mins** | **Step 3: Importing and Registering in Red Hat Developer Hub (RHDH)** | How to manually register the service into RHDH. (Quick live demo) |
 | **28-30 mins** | **Step 4: Q&A + Customization Challenge** | Let participants tweak the template for real-world use cases. |
 
----
 
- # Understanding Backstage Entities
+# 🛠 Understanding Backstage Entities Before We Start
 
-## 📌 Goal:  
-Before we start coding, explain how Backstage organizes services using **entities**.
-
-### **What are Backstage entities?**
-- Everything inside Backstage is an **entity**.
-- Each entity represents a **real-world object** like a **service, API, or template**.
-
-### **What are the key entities we will work with?**
-- **Template (`kind: Template`)** → Defines how **new services** are created from a Backstage form.
-- **Component (`kind: Component`)** → Represents a **running microservice** in Backstage.
-- **API (`kind: API`)** → Describes an **exposed API** that other services can use.
-
-### **How do these work together?**
-- **A `Template` helps generate a `Component`**.
-- **A `Component` represents a real microservice in production**.
-- **An `API` is linked to a `Component` if it provides a public API**.
+## 📌 Goal
+Before writing any code, let's understand how **Backstage** organizes software components using **entities**.
 
 ---
+
+## ✅ What are Backstage Entities?
+
+Everything inside Backstage is considered an **entity**.  
+An entity represents a **real-world object**, such as:
+
+- A **microservice**
+- An **API**
+- A **CI/CD pipeline**
+- A **team or user group**
+
+Entities in Backstage are defined using **YAML files**, which Backstage reads and organizes in the **Software Catalog**.
+
+---
+
+## ✅ Key Entities We Will Work With
+
+In this demo, we will use **three core entities**:
+
+| **Entity Type**  | **Kind**         | **Purpose** |
+|------------------|-----------------|-------------|
+| **Template**     | `kind: Template` | Defines how **new services are created** from a Backstage form. |
+| **Component**    | `kind: Component` | Represents a **running microservice** in Backstage. |
+| **API**         | `kind: API`      | Describes an **exposed API** that other services can use. |
+
+---
+
+## ✅ How Do These Work Together?
+
+1️⃣ **A `Template` helps generate a `Component`.**  
+2️⃣ **A `Component` represents a real microservice in production.**  
+3️⃣ **An `API` is linked to a `Component` if it provides a public API.**
+
+---
+
+## 📌 Example Workflow:
+
+- A **developer fills out a Backstage form** → The **Template** creates a **new Git repository** with Quarkus boilerplate.
+- The service is **registered as a `Component` in Backstage** and linked to a **Kubernetes deployment**.
+- If the service **exposes an API**, it is also **registered as an `API` entity** in Backstage.
+
+---
+
+🚀 **Now that we understand these concepts, let’s build our Backstage Software Template step by step!**
+
+
+
 
 # **🛠 Step 1: Setting Up the Live Coding Demo**
 ### ✅ **Prerequisites**
