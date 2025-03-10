@@ -1,4 +1,4 @@
-# **📖 Step-by-Step Guide: Running the Incremental Backstage Template Demo in VS Code**
+# **📖 Step-by-Step Guide: Running the Backstage Template Demo in VS Code**
 
 ### ✅ **Prerequisites**
 Before starting, ensure you have:
@@ -200,4 +200,148 @@ spec:
 2️⃣ **Manually import the service into RHDH** using the UI.  
 3️⃣ **Confirm the service appears in the catalog.**  
 4️⃣ **Run a final test and answer Q&A.**  
+
+
+Yes! You can **incrementally build** the `catalog-info.yaml` file **step by step in VS Code**, just like we did for `template.yaml`. This approach will help **explain each section** before adding it, making it **clear and engaging for the audience**.
+
+---
+
+# **📖 Step-by-Step Guide: Building `catalog-info.yaml` in VS Code**
+
+### ✅ **Prerequisites**
+Before starting, ensure you have:
+- **VS Code open** with your Backstage repository.
+- **A running Backstage or Red Hat Developer Hub (RHDH) instance**.
+- **Your `template.yaml` is working**, so it generates `catalog-info.yaml`.
+
+---
+
+## **🛠 Step 1: Start with a Blank `catalog-info.yaml` with Comments**
+📌 **Goal**: Explain that `catalog-info.yaml` **registers the service in Backstage**.
+
+### **Instructions**
+1. Open **VS Code**.
+2. **Create a new file**: `catalog-info.yaml`
+3. **Start with a blank template** and **add basic comments**:
+
+```yaml
+# Backstage Component registration file
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{values.component_id | dump}}
+spec:
+  type: service
+  lifecycle: development
+  owner: ${{values.owner | dump}}
+```
+
+### **What to Explain to the Audience**
+✅ **Why is this file important?** → Backstage needs `catalog-info.yaml` to **discover the service**.  
+✅ **What is `apiVersion: backstage.io/v1alpha1`?** → It defines this as a **Backstage entity**.  
+✅ **What does `kind: Component` mean?** → It tells Backstage this is a **service**.  
+✅ **Why use `${{values.component_id}}`?** → It dynamically assigns the **name from user input**.
+
+---
+
+## **🛠 Step 2: Add Metadata Section**
+📌 **Goal**: Add **description and tags** to make the component **easier to find**.
+
+### **Instructions**
+1. **Update `metadata` section**:
+
+```yaml
+metadata:
+  name: ${{values.component_id | dump}}
+  {%- if values.description %}
+  description: ${{values.description | dump}}
+  {%- endif %}
+  tags:
+    - java
+    - quarkus
+```
+
+### **What to Explain to the Audience**
+✅ **Why add a description?** → Helps other developers understand **what the service does**.  
+✅ **What are tags for?** → Makes it **easier to search** in Backstage.  
+
+---
+
+## **🛠 Step 3: Add Annotations for Backstage and ArgoCD**
+📌 **Goal**: Connect the service to **ArgoCD, Kubernetes, GitLab, and TechDocs**.
+
+### **Instructions**
+1. **Add the `annotations` section**:
+
+```yaml
+  annotations:
+    argocd/app-selector: rht-gitops.com/${{ values.gitops_namespace }}=${{ values.owner }}-${{values.component_id}}
+    backstage.io/kubernetes-id: ${{values.component_id}}
+    janus-idp.io/tekton: ${{values.component_id}}
+    backstage.io/source-location: url:https://${{values.host}}/${{values.destination}}
+    backstage.io/techdocs-ref: url:https://${{values.host}}/${{values.destination}}
+    gitlab.com/project-slug: ${{values.destination}}
+```
+
+### **What to Explain to the Audience**
+✅ **Why is `argocd/app-selector` needed?** → It **links the service to ArgoCD** for GitOps deployment.  
+✅ **What does `backstage.io/kubernetes-id` do?** → It **connects Backstage to the Kubernetes deployment**.  
+✅ **Why `backstage.io/source-location`?** → This allows **clicking on the repo link inside Backstage**.  
+✅ **What does `gitlab.com/project-slug` do?** → It **links the service to GitLab for CI/CD visibility**.  
+
+**⏩ Run and test** in Backstage → The new service should appear **with GitLab and Kubernetes integrations!**  
+
+---
+
+## **🛠 Step 4: Add Developer Links**
+📌 **Goal**: Provide **direct links** to VS Code and JetBrains in OpenShift Dev Spaces.
+
+### **Instructions**
+1. **Add the `links` section**:
+
+```yaml
+  links:
+    - url: https://devspaces.${{values.cluster}}/#https://${{values.host}}/${{values.destination}}
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: https://devspaces.${{values.cluster}}/#https://${{values.host}}/${{values.destination}}?che-editor=che-incubator/che-idea/latest
+      title: OpenShift Dev Spaces (JetBrains IntelliJ)
+      icon: web
+```
+
+### **What to Explain to the Audience**
+✅ **Why add links?** → They allow **developers to open the service directly in OpenShift Dev Spaces**.  
+✅ **What do the URLs do?** → They **point to the exact Git repo** for easy access.  
+
+---
+
+## **🛠 Step 5: Add API Component**
+📌 **Goal**: Register the API inside Backstage **so it appears under "APIs"**.
+
+### **Instructions**
+1. **Add a new API definition** **below** the `Component`:
+
+```yaml
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: ${{values.component_id | dump}}
+  {%- if values.description %}
+  description: ${{values.description | dump}}
+  {%- endif %}
+spec:
+  type: openapi
+  lifecycle: development
+  owner: ${{values.owner | dump}}
+  definition:
+    $text: ./openapi.yaml
+```
+
+### **What to Explain to the Audience**
+✅ **What is `kind: API`?** → It registers the API in Backstage’s **API catalog**.  
+✅ **Why use `definition: $text: ./openapi.yaml`?** → It tells Backstage to **use the OpenAPI spec**.  
+✅ **How does this help developers?** → They can **see and test the API directly in Backstage**.  
+
+
 
