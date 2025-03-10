@@ -21,43 +21,45 @@ By the end of this session, participants will:
 
 ## Before writing any code, let's understand how **Red Hat Developer Hub** organizes software components using **entities**.
 
-## What are Red Hat Developer Hub Entities?
+## **What are Red Hat Developer Hub Entities?**  
+Everything inside **Red Hat Developer Hub (RHDH)** is considered an **entity**.  
+An **entity** represents a **real-world object** that is **registered and managed within the Software Catalog**.  
 
-Everything inside Red Hat Developer Hub is considered an **entity**. An entity represents a **real-world object**, such as:
+### **Common Entity Types in RHDH:**  
+- **A microservice** (e.g., a backend service running in production)  
+- **An API** (e.g., an OpenAPI-defined REST or GraphQL endpoint)  
+- **A CI/CD pipeline** (e.g., Tekton or GitHub Actions workflows)  
+- **A team or user group** (e.g., an organizational unit managing services)  
 
-- A **microservice**
-- An **API**
-- A **CI/CD pipeline**
-- A **team or user group**
+Entities in **Red Hat Developer Hub** are defined using **YAML files**, specifically `catalog-info.yaml`, which RHDH reads to organize components in the **Software Catalog**.  
 
-Entities in Red Hat Developer Hub are defined using **YAML files**, which Red Hat Developer Hub reads and organizes in the **Software Catalog**.
+---
 
-## Key Entities We Will Work With
+## **Key Entities We Will Work With**  
+In this demo, we will use **three core entities**:  
 
-In this demo, we will use **three core entities**:
+| **Entity Type** | **Kind**            | **Purpose**  |  
+|----------------|-----------------|----------------------|  
+| **Template**   | `kind: Template`   | Defines how **new services are created** using a Red Hat Developer Hub form.  |  
+| **Component**  | `kind: Component`  | Represents a **runnable microservice** registered in the catalog.  |  
+| **API**        | `kind: API`        | Describes an **exposed API** that other services can use.  |  
 
-| **Entity Type**  | **Kind**         | **Purpose** |
-|------------------|-----------------|-------------|
-| **Template**     | `kind: Template` | Defines how **new services are created** from a Red Hat Developer Hub form. |
-| **Component**    | `kind: Component` | Represents a **running microservice** in Red Hat Developer Hub. |
-| **API**         | `kind: API`      | Describes an **exposed API** that other services can use. |
+---
 
+## **How Do These Work Together?**  
+- A **Template** (`kind: Template`) helps generate a **Component** (`kind: Component`).  
+- A **Component** represents a **real microservice** deployed in production.  
+- If a **Component exposes an API**, it is **linked to an API entity** (`kind: API`) in the catalog.  
 
-## How Do These Work Together?
+---
 
-**A `Template` helps generate a `Component`.**  
-**A `Component` represents a real microservice in production.**  
-**An `API` is linked to a `Component` if it provides a public API.**
+## **📌 Example Workflow:**  
+* A **developer fills out a form** in **Red Hat Developer Hub** → The **Template** creates a **new Git repository** with Quarkus boilerplate.
+* The service is **registered as a `Component` in the catalog** and linked to a **Kubernetes deployment**.
+* If the service **exposes an API**, it is also **registered as an `API` entity** in RHDH.  
 
+🚀 **Now that we understand these concepts, let’s build our Red Hat Developer Hub Software Template step by step!**  
 
-## 📌 Example Workflow:
-
-- A **developer fills out a Red Hat Developer Hub form** → The **Template** creates a **new Git repository** with Quarkus boilerplate.
-- The service is **registered as a `Component` in Red Hat Developer Hub** and linked to a **Kubernetes deployment**.
-- If the service **exposes an API**, it is also **registered as an `API` entity** in Red Hat Developer Hub.
-
-
-🚀 **Now that we understand these concepts, let’s build our Red Hat Developer Hub Software Template step by step!**
 
 # **🛠 Step 1: Setting Up the Demo**
 
