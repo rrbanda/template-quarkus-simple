@@ -112,11 +112,21 @@ spec:
   owner: rhdh
   type: service
 ```
-
  **Explanation**:
-- What is `template.yaml`?  
-- Why do we need `apiVersion`, `kind`, and `metadata`?
+### **What is `template.yaml`?**
+- `template.yaml` is a **Backstage Software Template** that automates **project scaffolding**.
+- It defines **how new services are created** based on user input.
+- The template includes **parameters, actions (steps), and output** to generate, register, and deploy a service.
 
+### **Why do we need `apiVersion`, `kind`, and `metadata`?**
+- **`apiVersion`**: Specifies the **version of the Backstage API** being used (`scaffolder.backstage.io/v1beta3` ensures compatibility with Backstage scaffolding).
+- **`kind`**: Defines the **type of entity** (`Template`) so Backstage knows how to process it.
+- **`metadata`**: Provides essential **identifiers and descriptions**, such as:
+  - **`name`** → Unique identifier for the template.
+  - **`title` & `description`** → Human-readable details.
+  - **`tags`** → Helps categorize and filter templates in the Backstage UI.
+
+🚀 **In short:** `template.yaml` tells Backstage **what to create, how to create it, and what metadata to assign** in the Software Catalog.
 
 ## **🛠 Step 3: Define User Input Parameters**
 📌 **Goal**: Collect user input for the service.
