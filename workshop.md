@@ -188,10 +188,18 @@ spec:
 ```
 
 **Explanation**:
-- Why use `fetch:template`?
-- How does `${{ parameters.component_id }}` work?
+### **Why use `fetch:template`?**  
+- `fetch:template` **copies predefined files** (e.g., a Quarkus project skeleton) into the new service directory.  
+- It **ensures consistency** by using a standard project structure.  
+- This eliminates the need for developers to **manually clone or copy boilerplate code**.  
 
----
+### **How does `${{ parameters.component_id }}` work?**  
+- `${{ parameters.component_id }}` is a **templating expression** in Backstage that **injects user-provided input** into the template.  
+- When a user fills out the **Backstage form**, the value of `component_id` is dynamically **substituted** in places like file paths, names, or configurations.  
+- This ensures that **each service has a unique name** based on the user’s input.  
+
+🚀 **In short:** `fetch:template` automates code scaffolding, and `${{ parameters.component_id }}` dynamically customizes the generated service.
+
 
 ## **🛠 Step 5: Create a Git Repository and Push Code**
 📌 **Goal**: Automatically create a **GitLab repository**.
