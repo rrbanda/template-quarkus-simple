@@ -3,9 +3,8 @@ By the end of this session, participants will:
 - **Learn how to create a Backstage Software Template from scratch.**
 - **Understand the folder structure and role of each file.**
 - **Build `template.yaml` and `catalog-info.yaml`.**
-- **Automate Git repo creation and GitOps deployment.**
 - **Register and import services in Red Hat Developer Hub (RHDH).**
-- **Deploy a microservice using ArgoCD.**
+- **Use template from RHDH Software Catalog and create repos with necessary code that developer can start using to build further.**
 
 ## 📜 Agenda
 | **Time** | **Activity** | **Why It’s Important** |
