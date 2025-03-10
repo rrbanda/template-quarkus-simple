@@ -19,8 +19,7 @@ By the end of this session, participants will:
 
 # 🛠 Understanding Backstage Entities Before We Start
 
-## 📌 Goal
-Before writing any code, let's understand how **Red Hat Developer Hub** organizes software components using **entities**.
+## Before writing any code, let's understand how **Red Hat Developer Hub** organizes software components using **entities**.
 
 ## What are Red Hat Developer Hub Entities?
 
