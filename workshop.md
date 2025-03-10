@@ -8,10 +8,6 @@ By the end of this session, participants will:
 - ✅ **Deploy a microservice using ArgoCD.**
 
 ---
-
-To **fit everything into 30 minutes** while maintaining **clarity and hands-on engagement**, we need to **condense explanations** and **focus on the most critical coding parts**. Below is the **optimized agenda for 30 minutes**:
-
----
 ## 📜 Agenda
 | **Time** | **Activity** | **Why It’s Important** |
 |---------|-------------|----------------------|
@@ -24,6 +20,27 @@ To **fit everything into 30 minutes** while maintaining **clarity and hands-on e
 
 ---
 
+ # Understanding Backstage Entities
+
+## 📌 Goal:  
+Before we start coding, explain how Backstage organizes services using **entities**.
+
+### **What are Backstage entities?**
+- Everything inside Backstage is an **entity**.
+- Each entity represents a **real-world object** like a **service, API, or template**.
+
+### **What are the key entities we will work with?**
+- **Template (`kind: Template`)** → Defines how **new services** are created from a Backstage form.
+- **Component (`kind: Component`)** → Represents a **running microservice** in Backstage.
+- **API (`kind: API`)** → Describes an **exposed API** that other services can use.
+
+### **How do these work together?**
+- **A `Template` helps generate a `Component`**.
+- **A `Component` represents a real microservice in production**.
+- **An `API` is linked to a `Component` if it provides a public API**.
+
+---
+
 # **🛠 Step 1: Setting Up the Live Coding Demo**
 ### ✅ **Prerequisites**
 Before starting, ensure you have:
@@ -33,9 +50,6 @@ Before starting, ensure you have:
 - **ArgoCD configured** if testing deployments.
 
 ---
-
----
-
 
 #  🛠 Understanding the Folder Structure
 
