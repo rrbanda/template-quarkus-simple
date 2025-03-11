@@ -228,8 +228,7 @@ The Software Templates part of Backstage is a tool that can help you create Comp
 * Templates are stored in the Software Catalog under a kind Template.
 * You can create your own templates with a small yaml definition which describes the template and its metadata, along with some input variables that your template will need, and then a list of actions which are then executed by the scaffolding service.
 ---
-## **🛠 Step 2: Start with a Blank `template.yaml`**
-**Goal**: Explain that Red Hat Developer Hub uses templates to scaffold services and that we will **incrementally build `template.yaml`**.
+## **🛠 Step 2: Start with a Blank `template.yaml`** we explain that Red Hat Developer Hub uses templates to scaffold services and that we will **incrementally build `template.yaml`**.
 
 ### **Instructions**
 1. Open **VS Code** and navigate to your Red Hat Developer Hub Software template repository.
@@ -271,8 +270,7 @@ spec:
  **In short:** `template.yaml` tells Red Hat Developer Hub **what to create, how to create it, and what metadata to assign** in the Software Catalog.
 
 ---
-## **🛠 Step 2.1: Define User Input Parameters**
- **Goal**: Collect user input for the service.
+## **🛠 Step 2.1: Define User Input Parameters** to Collect user input for the service.
 
 ### **Instructions**
 1. **Add the parameters section**:
@@ -377,8 +375,7 @@ parameters:
 **⏩ Test It in RHDH Template editor ** → Paste the template and check the form UI.
 
 
-## **🛠 Step 2.2: Fetch Quarkus Boilerplate Code**
-**Goal**: Copy a **predefined Quarkus project**.
+## **🛠 Step 2.2: Fetch Quarkus Boilerplate Code** to copy a **predefined Quarkus project**.
 
 ```yaml
   steps:
@@ -407,8 +404,7 @@ parameters:
 **In short:** `fetch:template` automates code scaffolding, and `${{ parameters.component_id }}` dynamically customizes the generated service.
 
 
-## **🛠 Step 2.3: Create a Git Repository and Push Code**
-**Goal**: Automatically create a **GitLab repository**.
+## **🛠 Step 2.3: Create a Git Repository and Push Code** to Automatically create a **GitLab repository**.
 
 ```yaml
     - id: publish
@@ -440,8 +436,7 @@ parameters:
 
 ---
 
-## **🛠 Step 2.4: Register the Service in Red Hat Developer Hub**
-**Goal**: Add the service to the **Red Hat Developer Hub Software catalog**.
+## **🛠 Step 2.4: Register the Service in Red Hat Developer Hub** to Add the service to the **Red Hat Developer Hub Software catalog**.
 
 ```yaml
     - id: register
@@ -598,11 +593,11 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 ```
 
 ### **Explanation**
-✅ **Why include output links?**  
+**Why include output links?**  
 - **Gives developers direct access** to the newly created Git repositories.  
 - **Ensures services can be found in Red Hat Developer Hub** by linking to their catalog entry.  
 
-✅ **What does `entityRef` do?**  
+**What does `entityRef` do?**  
 - The `entityRef` ensures that after the template runs, users can **click a link to view the registered Component in the RHDH catalog**.  
 - This helps **new developers quickly find the service** and access relevant information.
 
@@ -612,9 +607,7 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 **⏩ Test It in Red Hat Developer Hub** → The new service should appear in the catalog.
 
 
-## **🛠 Step 3: Build `catalog-info.yaml` Incrementally**
-
-**Goal**: Register the service in Red Hat Developer Hub by **building `catalog-info.yaml` step by step**.
+## **🛠 Step 3: Build `catalog-info.yaml` Incrementally** and Register the service in Red Hat Developer Hub by **building `catalog-info.yaml` step by step**.
 
 
 ### ** Start with a Blank `catalog-info.yaml`**
