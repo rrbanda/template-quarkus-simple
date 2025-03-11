@@ -844,7 +844,7 @@ This process ensures **all APIs and services are properly documented and tracked
 
 ---
 
-## 9. Final Steps  
+## Final Steps  
 
 After building and registering your **Red Hat Developer Hub (RHDH) Software Template**, it's time to **test and verify** that everything works as expected.  
 
@@ -872,4 +872,4 @@ After running the template:
 ---
 
 Now that your **Backstage Software Template** is fully functional in **Red Hat Developer Hub**, you have successfully **automated service onboarding, GitOps deployments, and API registration**! 🚀🎉  
---
+---
