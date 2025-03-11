@@ -1,4 +1,11 @@
-title: "Red Hat Develope Hub "
-description: "Learn creating software templates"
-theme: jekyll-theme-slate  # You can change this theme
-show_downloads: false
+title: "Red Hat Developer Hub"
+description: "Create Software Templates"
+theme: just-the-docs
+search_enabled: true
+
+# Enable sidebar navigation within a single file
+back_to_top: true
+back_to_top_text: "Back to Top"
+
+# Order of Sections (Optional)
+nav_order: 1
