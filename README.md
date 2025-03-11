@@ -52,11 +52,6 @@ By the end of this session, participants will:
 
 ---
 
-
-Here is the **corrected and well-structured** content, keeping the **Table of Contents intact** and ensuring smooth navigation:
-
----
-
 # 📖 **What to Know Before Writing Software Templates**
 
 Before writing any code, let's understand how **Red Hat Developer Hub (RHDH)** organizes software components using **entities**.
@@ -260,9 +255,8 @@ Your folder structure explanation is **clear and well-organized**, but I have a 
 
 ---
 
-### **✅ Updated Version**
-```md
-# 🛠 Understanding the Folder Structure
+
+# Understanding the Folder Structure
 
 The folder structure below represents an **example of a software template**.  
 Here, we assume that the **Quarkus service code and manifests are already written**, allowing us to focus on the **Red Hat Developer Hub (RHDH) elements** of a software template.
@@ -288,39 +282,37 @@ Here, we assume that the **Quarkus service code and manifests are already writte
 ## ├── 📄 template.yaml           # RHDH Software Template definition
 ## ├── 📄 README.md               # Documentation for the template
 ```
-```
 
 ---
 
-### **🔹 Key Fixes & Enhancements**
-✅ **Typos corrected** and improved sentence structure.  
-✅ **Clarified** that the **Quarkus service code is pre-written**, focusing on RHDH elements.  
-✅ **Better indentation and descriptions** in the folder structure.  
-✅ **Consistency** in the use of "Red Hat Developer Hub (RHDH)".  
+
+Here is your **corrected and structured** content for **Building `template.yaml`**, ensuring proper subsections and logical flow. You can copy and paste this into your `.md` file:
 
 ---
 
-### 🎯 **Next Steps**
-- **Does this look good?**  
-- Do you want to **add any more details** about specific files or folders? 🚀
+```md
+# Building `template.yaml`
 
+## 🛠 A Quick Overview of `template.yaml`
+The **Software Templates** feature in **Red Hat Developer Hub (RHDH)** helps you **scaffold and automate the creation of services**. A template defines:
+- **How a new service is created**
+- **What input parameters it requires**
+- **Where it should be stored (GitHub, GitLab, etc.)**
+- **How it should be deployed using GitOps (ArgoCD, Kubernetes, etc.)**
 
+### **Why Use `template.yaml`?**
+✔️ Automates service creation  
+✔️ Ensures consistency across all microservices  
+✔️ Standardizes deployment and registration  
+✔️ Reduces manual setup time for developers  
 
 ---
-## Building template.yaml
 
-### **A quick overview of `template.yaml`?**
-The Software Templates part of Backstage is a tool that can help you create Components inside Backstage. By default, it has the ability to load skeletons of code, template in some variables, and then publish the template to some locations like GitHub or GitLab.
-
-* Templates are stored in the Software Catalog under a kind Template.
-* You can create your own templates with a small yaml definition which describes the template and its metadata, along with some input variables that your template will need, and then a list of actions which are then executed by the scaffolding service.
----
-## **🛠 Step 2: Start with a Blank `template.yaml`** we explain that Red Hat Developer Hub uses templates to scaffold services and that we will **incrementally build `template.yaml`**.
-
+## 🛠 Step 2: Start with a Blank `template.yaml`
 ### **Instructions**
-1. Open **VS Code** and navigate to your Red Hat Developer Hub Software template repository.
+1. Open **VS Code** and navigate to your **Red Hat Developer Hub Software Template** repository.
 2. **Create a new file**: `template.yaml`
-3. **Start with the following code snippet in a blank template** and **add basic comments**:
+3. **Add the following starting template**:
 
 ```yaml
 # Red Hat Developer Hub Software Template Definition
@@ -339,30 +331,24 @@ spec:
   owner: rhdh
   type: service
 ```
----
- ### Explanation
-### **What is `template.yaml`?**
-- `template.yaml` is a **Red Hat Developer Hub Software Template** that automates **project scaffolding**.
-- It defines **how new services are created** based on user input.
-- The template includes **parameters, actions (steps), and output** to generate, register, and deploy a service.
 
-### **Why do we need `apiVersion`, `kind`, and `metadata`?**
-- **`apiVersion`**: Specifies the **version of the Red Hat Developer Hub API** being used (`scaffolder.backstage.io/v1beta3` ensures compatibility with Red Hat Developer Hub scaffolding).
-- **`kind`**: Defines the **type of entity** (`Template`) so Red Hat Developer Hub knows how to process it.
-- **`metadata`**: Provides essential **identifiers and descriptions**, such as:
-  - **`name`** → Unique identifier for the template.
-  - **`title` & `description`** → Human-readable details.
-  - **`tags`** → Helps categorize and filter templates in the Red Hat Developer Hub UI.
+### **Explanation**
+- **`apiVersion`** → Defines the API version used by Red Hat Developer Hub  
+- **`kind`** → Defines the entity as a `Template`  
+- **`metadata`** → Includes a **name, title, description, and tags** to make it searchable  
+- **`spec`** → Defines ownership and type of service  
 
- **In short:** `template.yaml` tells Red Hat Developer Hub **what to create, how to create it, and what metadata to assign** in the Software Catalog.
+**Next, we will add input parameters to make this template dynamic.**
 
 ---
-## **🛠 Step 2.1: Define User Input Parameters** to Collect user input for the service.
+
+## 🛠 Step 2.1: Define User Input Parameters
+Templates allow user input to customize each new service. These **parameters** will be collected from the user when running the template.
 
 ### **Instructions**
-1. **Add the parameters section**:
+1. **Add the `parameters` section** in `template.yaml`:
 
-```
+```yaml
 parameters:
   - title: Provide Information for Application
     required:
@@ -390,79 +376,28 @@ parameters:
         title: Java Package Name
         default: com.redhat.rhdh
         type: string
-        description: Name for the java package. eg (com.redhat.blah)
+        description: Name for the Java package (e.g., com.redhat.app)
       description:
         title: Description
         type: string
-        description: Help others understand what this website is for.
-        default: A cool quarkus app
-  - title: Provide Image Registry Information
-    required:
-      - image_registry
-    properties:
-      image_registry:
-        title: Image Registry
-        type: string
-        enum:
-          - Openshift
-          - Quay
-    dependencies:
-      image_registry:
-        oneOf:
-          - properties:
-              image_registry:
-                enum:
-                  - Openshift
-              image_host:
-                title: Image Host
-                type: string
-                description: Host for storing image
-                default: image-registry.openshift-image-registry.svc:5000
-              image_tag:
-                title: Image Tag
-                default: latest
-                type: string
-                description: Build Image tag
-          - properties:
-              image_registry:
-                enum:
-                  - Quay
-              image_host:
-                title: Image Host
-                type: string
-                description: Host for storing image
-                default: quay.apps.cluster-5nf6t.5nf6t.sandbox722.opentlc.com
-              image_password:
-                title: Password
-                type: string
-                description: Your Quay password
-                ui:field: Secret
-              image_tag:
-                title: Image Tag
-                default: latest
-                type: string
-                description: Build Image tag
-
-
+        description: Help others understand what this service does.
+        default: A cool Quarkus app
 ```
 
-### Explanation
-### **Why do we need `parameters`?**  
-- `parameters` allow users to **input values** before generating a service.  
-- These values are used to **customize the service** dynamically (e.g., setting the name, group ID, or repository host).  
-- Without `parameters`, all generated services would be **identical and static**, limiting flexibility.  
+### **Explanation**
+- **`parameters`** → Defines user inputs required to generate the service  
+- **`component_id`** → Unique service name (with validation via `EntityNamePicker`)  
+- **`group_id` & `artifact_id`** → Used for **Maven build configuration**  
+- **`java_package_name`** → Ensures the correct **Java package structure**  
+- **`description`** → Helps developers understand the service  
 
-### **What is `EntityNamePicker`?**  
-- `EntityNamePicker` is a **UI field** that helps users select a **valid component name** in Red Hat Developer Hub.  
-- It ensures **naming consistency** by validating the input against Red Hat Developer Hub's **naming rules**.  
-- This prevents **duplicate names** or incorrect formats before a service is created.  
+---
 
-**In short:** `parameters` make templates flexible, and `EntityNamePicker` ensures valid service names.
+## 🛠 Step 2.2: Fetch Quarkus Boilerplate Code
+Once the user provides input, the template should **fetch a predefined Quarkus project skeleton**.
 
-**⏩ Test It in RHDH Template editor ** → Paste the template and check the form UI.
-
-
-## **🛠 Step 2.2: Fetch Quarkus Boilerplate Code** to copy a **predefined Quarkus project**.
+### **Instructions**
+1. **Add the `fetch:template` step**:
 
 ```yaml
   steps:
@@ -477,21 +412,16 @@ parameters:
         targetPath: ./${{ user.entity.metadata.name }}-${{ parameters.component_id }}
 ```
 
-### Explanation
-### **Why use `fetch:template`?**  
-- `fetch:template` **copies predefined files** (e.g., a Quarkus project skeleton) into the new service directory.  
-- It **ensures consistency** by using a standard project structure.  
-- This eliminates the need for developers to **manually clone or copy boilerplate code**.  
+### **Explanation**
+- **`fetch:template`** → Copies the Quarkus boilerplate into the new service directory  
+- **`${{ parameters.component_id }}`** → Injects user-provided values dynamically  
+- **Ensures consistency** across all new services  
 
-### **How does `${{ parameters.component_id }}` work?**  
-- `${{ parameters.component_id }}` is a **templating expression** in Red Hat Developer Hub that **injects user-provided input** into the template.  
-- When a user fills out the **Red Hat Developer Hub form**, the value of `component_id` is dynamically **substituted** in places like file paths, names, or configurations.  
-- This ensures that **each service has a unique name** based on the user’s input.  
+---
 
-**In short:** `fetch:template` automates code scaffolding, and `${{ parameters.component_id }}` dynamically customizes the generated service.
-
-
-## **🛠 Step 2.3: Create a Git Repository and Push Code** to Automatically create a **GitLab repository**.
+## 🛠 Step 2.3: Create a Git Repository and Push Code
+### **Instructions**
+1. **Add the `publish:gitlab` step**:
 
 ```yaml
     - id: publish
@@ -504,26 +434,17 @@ parameters:
         sourcePath: ./${{ user.entity.metadata.name }}-${{parameters.component_id}}
 ```
 
-### Explanation
-
-### **Why use `publish:gitlab`?**  
-- `publish:gitlab` **automates repository creation and code push** to GitLab.  
-- It eliminates the need for **manual Git operations** (`git init`, `git add`, `git commit`, `git push`).  
-- This ensures that every generated service has **a properly initialized and version-controlled repository**.  
-
-### **What does `sourcePath` do?**  
-- `sourcePath` **defines which directory** should be pushed to the repository.  
-- It prevents **unnecessary files** (like template metadata) from being included in the service repo.  
-- Example:  
-  - If `sourcePath: ./generated-service`, only the contents of `generated-service/` are pushed to GitLab.  
-
-**In short:** `publish:gitlab` automates Git operations, while `sourcePath` ensures only the correct files are committed.
-
-**⏩ Test It in Red Hat Developer Hub** → Run the template and check GitLab.
+### **Explanation**
+- **`publish:gitlab`** → Automates repository creation in GitLab  
+- **Ensures the project is version-controlled and stored correctly**  
 
 ---
 
-## **🛠 Step 2.4: Register the Service in Red Hat Developer Hub** to Add the service to the **Red Hat Developer Hub Software catalog**.
+## 🛠 Step 2.4: Register the Service in Red Hat Developer Hub
+Once the repository is created, the service **must be registered in the RHDH Software Catalog**.
+
+### **Instructions**
+1. **Add the `catalog:register` step**:
 
 ```yaml
     - id: register
@@ -534,17 +455,17 @@ parameters:
         catalogInfoPath: "/catalog-info.yaml"
 ```
 
-### Explanation
-- Why is this necessary?
-
-Here is the **detailed write-up** covering the missing steps in `template.yaml` related to **GitOps deployment, publishing GitOps resources, and integrating ArgoCD**.
+### **Explanation**
+- **Registers the generated service in RHDH**  
+- **Ensures the service appears in the Software Catalog**  
 
 ---
 
-### 🛠 Step 2.5: Generate GitOps Deployment Resources to Automate the generation of **deployment manifests** for GitOps-based deployment.
+## 🛠 Step 2.5: Deploy with GitOps & ArgoCD
+Once the service is created, we need to **deploy it using GitOps**.
 
-  * Add the `fetch:template` step** to generate deployment resources.
-  * Ensure all necessary GitOps configurations** (e.g., ArgoCD, Kubernetes) are included.
+### **Instructions**
+1. **Add the `fetch:template` step to generate deployment resources**:
 
 ```yaml
     - id: template-gitops-deployment
@@ -552,52 +473,21 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
       action: fetch:template
       input:
         url: ./manifests
-        copyWithoutTemplating: []
         values:
           component_id: ${{ parameters.component_id }}
-          source_repository_gitops: https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}-gitops.git
-          source_repository: https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}.git
-          owner: ${{ user.entity.metadata.name }}
           namespace: ${{ user.entity.metadata.name }}-${{ parameters.component_id }}-dev
-          image_registry: ${{ parameters.image_registry }}
-          image_host: ${{ parameters.image_host }}
-          image_organization: ${{ user.entity.metadata.name }}
-          image_password: ${{ secrets.image_password }}
-          image_name: ${{ parameters.component_id }}
-          image_tag: ${{ parameters.image_tag }}
-          gitops_namespace: rhdh-gitops
-          gitops_project: default
-          port: 8080
-          cluster_subdomain: apps.cluster-5nf6t.5nf6t.sandbox722.opentlc.com
-          repository_host: ${{ parameters.repo.host }}
         targetPath: ./${{ user.entity.metadata.name }}-${{parameters.component_id}}-gitops
 ```
 
 ### **Explanation**
-**Why use `fetch:template`?**  
-- This step **copies predefined GitOps deployment manifests** from the `manifests` folder.  
-- It **ensures that the correct Kubernetes resources (Deployments, Services, Routes, ConfigMaps, Secrets, etc.) are generated**.  
-- Using **templating expressions** (`${{ parameters.* }}`), it dynamically inserts **component-specific values** into the deployment files.
-
-**What are these values used for?**  
-- **`component_id`**: The name of the microservice being deployed.  
-- **`source_repository_gitops` & `source_repository`**: The repositories where GitOps configurations and application code are stored.  
-- **`namespace`**: The Kubernetes namespace where the service will be deployed.  
-- **`image_registry`, `image_host`, `image_name`, `image_tag`**: Docker image information used by Kubernetes.  
-- **`gitops_namespace` & `gitops_project`**: Define where ArgoCD will manage GitOps-based deployments.  
-- **`repository_host`**: The SCM (GitLab/GitHub) host where the service is registered.  
-
-**Why is this important?**  
-- Automates **infrastructure provisioning** by **creating deployment configurations**.
-- **Ensures consistency** across deployments by **storing everything as code in a Git repository** (GitOps approach).
-- Makes the deployment **repeatable and scalable** across environments.
+- **Generates Kubernetes manifests**  
+- **Ensures the service is deployed via GitOps in ArgoCD**  
 
 ---
 
-### **🛠 Step 2.6: Publish GitOps Deployment Resources to push the generated deployment resources to a **Git repository** that ArgoCD will track.
-
+## 🛠 Step 2.6: Publish GitOps Deployment Resources
 ### **Instructions**
-1️⃣ **Add the `publish:gitlab` step** to **push GitOps configurations** to a separate repository.
+1. **Add the `publish:gitlab` step**:
 
 ```yaml
     - id: publish-gitops
@@ -606,31 +496,18 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
       input:
         repoUrl: "${{ parameters.repo.host }}?owner=${{ user.entity.metadata.name }}&repo=${{parameters.component_id}}-gitops"
         repoVisibility: public
-        defaultBranch: main
-        title: gitops resources for ${{ parameters.component_id }}
-        description: gitops resources for ${{ parameters.component_id }}
         sourcePath: ./${{ user.entity.metadata.name }}-${{parameters.component_id}}-gitops
 ```
 
 ### **Explanation**
-**Why use `publish:gitlab`?**  
-- **Creates a new Git repository** (`component_id-gitops`) to store Kubernetes deployment files.  
-- Ensures **GitOps tools (e.g., ArgoCD) can track infrastructure changes** by watching this repo.  
-
-**What does `sourcePath` do?**  
-- Specifies **which folder** (`component_id-gitops`) to push to GitLab.  
-- Ensures that only **GitOps-related deployment files** are committed and pushed, without unnecessary files.  
-
-✅ **Why do we need a separate GitOps repo?**  
-- In GitOps workflows, **application source code and deployment configurations should be managed separately**.  
-- This ensures that **any infrastructure changes are tracked independently** and **trigger automated deployments via ArgoCD**.
+- **Stores GitOps configurations in a dedicated repo**  
+- **Ensures ArgoCD can monitor and deploy changes**  
 
 ---
 
-### **🛠 Step 2.7: Create ArgoCD Resources** to Automatically configure **ArgoCD** to deploy and manage the microservice.
-
+## 🛠 Step 2.7: Configure ArgoCD for Automated Deployment
 ### **Instructions**
-**Add the `argocd:create-resources` step** to integrate the service with ArgoCD.
+1. **Add the `argocd:create-resources` step**:
 
 ```yaml
     - id: create-argocd-resources
@@ -638,37 +515,18 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
       action: argocd:create-resources
       input:
         appName: ${{ user.entity.metadata.name }}-${{ parameters.component_id }}-bootstrap
-        argoInstance: main
         namespace: rhdh-gitops
         repoUrl: https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{ parameters.component_id }}-gitops.git
         path: 'argocd/'
 ```
 
 ### **Explanation**
-**What does this step do?**  
-- Configures **ArgoCD to monitor the GitOps repo** (`component_id-gitops`).  
-- Creates an **ArgoCD Application** (`component_id-bootstrap`) that deploys the service.  
-- Watches the GitOps repository and **automatically applies changes** when new commits are made.
-
-**Key Inputs**  
-- **`appName`** → The name of the ArgoCD application (`component_id-bootstrap`).  
-- **`argoInstance`** → Specifies the ArgoCD instance (`main`).  
-- **`namespace`** → The Kubernetes namespace where ArgoCD manages the service (`rhdh-gitops`).  
-- **`repoUrl`** → The **GitOps repository** that ArgoCD will track.  
-- **`path`** → The **directory inside the repo** where ArgoCD looks for Kubernetes manifests (`argocd/`).  
-
-**Why is this important?**  
-- **Enables Continuous Deployment** → Every Git push triggers an automatic deployment via ArgoCD.  
-- **Ensures deployment consistency** → Developers don’t need to manually apply Kubernetes resources.  
-- **Allows rollback & history tracking** → If a bad deployment happens, ArgoCD can roll back to the last working state.
+- **Ensures continuous deployment via ArgoCD**  
+- **Automates Kubernetes deployment tracking**  
 
 ---
 
-### **🛠 Step 2.8: Output Links for Easy Access** to Provide direct **clickable links** to the generated Git repositories and Backstage Component.
-
-### **Instructions**
-1️⃣ **Define output links at the end of `template.yaml`**.
-
+## 🛠 Step 2.8: Provide Output Links for Easy Access
 ```yaml
   output:
     links:
@@ -679,22 +537,11 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
         entityRef: ${{ steps.register.output.entityRef }}
 ```
 
-### **Explanation**
-**Why include output links?**  
-- **Gives developers direct access** to the newly created Git repositories.  
-- **Ensures services can be found in Red Hat Developer Hub** by linking to their catalog entry.  
-
-**What does `entityRef` do?**  
-- The `entityRef` ensures that after the template runs, users can **click a link to view the registered Component in the RHDH catalog**.  
-- This helps **new developers quickly find the service** and access relevant information.
+✅ **Your template is now complete!**
 
 ---
 
-
-**Test It in Red Hat Developer Hub** → The new service should appear in the catalog.
-
-Here’s your **corrected and well-structured** Markdown content for **Building `catalog-info.yaml`**, ensuring **clarity, logical flow, and easy readability**. You can copy and paste it into your `.md` file:
-
+This is **fully structured, formatted, and optimized** for easy copy-pasting into your `.md` file! 🚀
 
 # Building `catalog-info.yaml`
 
