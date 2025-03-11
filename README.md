@@ -23,7 +23,7 @@ By the end of this session, participants will:
 
 ---
 
-### 🔍 What is the Software Catalog?  
+#### 🔍 What is the Software Catalog?  
 The **Software Catalog** in **Red Hat Developer Hub (RHDH)** is a **centralized asset tracker** that stores and manages all the software-related entities in your organization.
 
 It helps teams:
@@ -35,12 +35,12 @@ It helps teams:
 
 ---
 
-### 🏗️ Key Concepts: What is an Entity?  
+#### 🏗️ Key Concepts: What is an Entity?  
 An **entity** is any **software-related object** that needs to be tracked, documented, and managed inside RHDH.
 
 Entities are typically **stored in YAML files** (e.g., `catalog-info.yaml`) and are **registered** in the **Software Catalog**. These can be:
 
-### **Entity Types in RHDH**  
+#### **Entity Types in RHDH**  
 | **Entity Type** | **Kind**            | **Purpose**  |  
 |----------------|-----------------|----------------------|  
 | **Component**  | `kind: Component`  | Represents a **microservice, website, or library** running in production. |  
@@ -60,7 +60,7 @@ Entities are typically **stored in YAML files** (e.g., `catalog-info.yaml`) and 
 
 ---
 
-### **How Backstage Templates Automate This Process**  
+#### **How Backstage Templates Automate This Process**  
 With a **Backstage Software Template**, **this entire setup is automated**:  
 
 **A Template (`kind: Template`) asks for user input** (e.g., service name, repo details).  
