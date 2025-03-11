@@ -146,9 +146,9 @@ Entities are **imported and synchronized** in **three ways**:
 
 ## **Prerequisites**
 Before starting, ensure you have:
-- **VS Code open** with your Red Hat Developer Hub repository.
-- **A running Red Hat Developer Hub or Red Hat Developer Hub (RHDH) instance**.
-- **A working GitLab (or GitHub) instance**.
+- **VS Code or any other IDE .
+- **A running Red Hat Developer Hub instance**.
+- **An accessible GitLab (or GitHub) Org **.
 - **ArgoCD configured** if testing deployments.
 
 ### 🛠 Preparing Your Repository for Backstage Software Templates
