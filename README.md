@@ -1,6 +1,6 @@
 # 🎯 Learning Software Templates Using an Example Quarkus Service
 
-## 📜 Table of Contents
+## Table of Contents
 1. [Workshop Overview](#workshop-overview)
 2. [Agenda](#agenda)
 3. [Understanding Software Catalog](#understanding-software-catalog)
@@ -11,7 +11,7 @@
 8. [Deploying with GitOps & ArgoCD](#deploying-with-gitops--argocd)
 9. [Final Steps](#final-steps)
 
-## 📖 Workshop Overview
+## Workshop Overview
 
 By the end of this session, participants will:
 - **Learn how to create a Red Hat Developer Hub Software Template from scratch for a Quarkus based application.**
@@ -21,7 +21,7 @@ By the end of this session, participants will:
 - **Use the imported template from RHDH Software Catalog and create repos with necessary code that developer can start using to build further.**
 
 ---
-## 📜 Agenda
+## Agenda
 
 | **Time**  | **Activity**                     | **Purpose**  |
 |-----------|----------------------------------|-------------|
@@ -38,7 +38,7 @@ By the end of this session, participants will:
 
 ---
 
-## 🔍 Understanding Software Catalog
+## Understanding Software Catalog
 The **Software Catalog** in **Red Hat Developer Hub (RHDH)** is a **centralized asset tracker** that stores and manages all the software-related entities in your organization.
 
 It helps teams:
@@ -149,7 +149,7 @@ Entities are **imported and synchronized** in **three ways**:
 
 ---
 
-## Summary  
+### Summary  
 
 ✔️ The **Software Catalog** is the **source of truth** for all software in your organization.  
 ✔️ **Entities** such as **Components, APIs, Resources, and Templates** are registered inside the Software Catalog.  
@@ -624,7 +624,7 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 ---
 
 
-**⏩ Test It in Red Hat Developer Hub** → The new service should appear in the catalog.
+**Test It in Red Hat Developer Hub** → The new service should appear in the catalog.
 
 ## Building catalog-info.yaml
 ### **🛠 Step 3: Build `catalog-info.yaml` Incrementally** and Register the service in Red Hat Developer Hub by **building `catalog-info.yaml` step by step**.
