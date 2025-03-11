@@ -1,5 +1,6 @@
-title: "Red Hat Developer Hub"
-description: "A Software Template for Quarkus Application"
+# Site Settings
+title: "Red Hat Developer Hub - Software Templates for Quarkus"
+description: "Learn creating software templates"
 remote_theme: just-the-docs/just-the-docs
 
 # Plugins required for GitHub Pages
@@ -10,7 +11,39 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
 
-# Disable Sidebar Completely
+# Disable sidebar completely
 nav: false
+
+# Ensure Just the Docs does not auto-generate navigation
+enable_nav: false
+
+# Remove search functionality (Optional)
 search_enabled: false
+
+# Hide Back to Top button
 back_to_top: false
+
+# Ensure no additional pages are added as navigation
+collections:
+  docs:
+    output: true
+    permalink: /:path/
+    nav_exclude: true
+
+# Exclude certain files from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - _site
+
+# Force a minimal layout with no sidebar or navigation
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+      has_toc: false
+      nav_exclude: true
+
