@@ -1,4 +1,4 @@
-# 🎯 Learning Software Templates Using an Example Quarkus Service
+# 🎯 Create Red Hat Developer Hub Software Templates for Quarkus based application.
 
 ## Table of Contents
 1. [Workshop Overview](#workshop-overview)
