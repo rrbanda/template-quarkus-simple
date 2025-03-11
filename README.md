@@ -8,14 +8,15 @@ By the end of this session, participants will:
 
 ---
 ## 📜 **Agenda**
-| **Time** | **Activity** | **Purpose** |
-|---------|-------------|------------|
-| **0-2 mins** | **Intro to RHDH/Backstage Entities** | What are Templates and Components? (Quick overview) |
-| **2-4 mins** | **Folder Structure** | Where `template.yaml`, `catalog-info.yaml`, and the Quarkus skeleton fit. |
-| **4-18 mins** | **Step 1: Build `template.yaml`** | Define parameters, fetch boilerplate, create repo, register in RHDH, deploy with ArgoCD. (Live coding) |
-| **18-26 mins** | **Step 2: Build `catalog-info.yaml`** | Why RHDH needs it? How it connects to GitOps.|
-| **26-28 mins** | **Step 3: Register in RHDH** | Manually import the service. (Quick demo) |
-| **28-30 mins** | **Step 4: Q&A + Customization** | Let participants tweak the template. |
+
+| **Time**  | **Activity**                     | **Purpose**  |
+|-----------|----------------------------------|-------------|
+| **0-2 mins**  | **Intro to RHDH/Backstage Entities** | What are Templates and Components? (Quick overview) |
+| **2-4 mins**  | **Folder Structure**  | Where `template.yaml`, `catalog-info.yaml`, and the Quarkus skeleton fit. |
+| **4-18 mins**  | **Step 1: Build `template.yaml`**  | Define parameters, fetch boilerplate, create repo, register in RHDH, deploy with ArgoCD. |
+| **18-26 mins**  | **Step 2: Build `catalog-info.yaml`**  | Why RHDH needs it? How it connects to GitOps. |
+| **26-28 mins**  | **Step 3: Register in RHDH**  | Manually import the service. (Quick demo) |
+| **28-30 mins**  | **Step 4: Q&A + Customization**  | Let participants tweak the template. |
 
 ---
 
