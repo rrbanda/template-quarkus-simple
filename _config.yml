@@ -15,7 +15,7 @@ search_enabled: true
 back_to_top: true
 back_to_top_text: "Back to Top"
 
-# Sidebar navigation structure (NO SUBMENU)
+# Sidebar navigation structure
 nav_order: 1
 nav:
   - title: "Home"
