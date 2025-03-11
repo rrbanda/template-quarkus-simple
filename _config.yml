@@ -1,5 +1,5 @@
 title: "Red Hat Developer Hub"
-description: "Create a Software template for Quarkus Application"
+description: "Learn creating software templates"
 remote_theme: just-the-docs/just-the-docs
 
 # Plugins required for GitHub Pages
@@ -15,7 +15,7 @@ search_enabled: true
 back_to_top: true
 back_to_top_text: "Back to Top"
 
-# Sidebar navigation structure
+# Sidebar navigation structure (NO SUBMENU)
 nav_order: 1
 nav:
   - title: "Home"
@@ -28,33 +28,6 @@ nav:
     url: "#what-to-know-before-writing-software-templates"
   - title: "Building a Software Template"
     url: "#building-a-software-template"
-    children:
-      - title: "Understanding the Software Template for Quarkus"
-        url: "#understanding-the-software-template-for-quarkus"
-      - title: "Creating a Template Step by Step"
-        url: "#creating-a-template-step-by-step"
-        children:
-          - title: "Defining User Input Parameters"
-            url: "#defining-user-input-parameters"
-          - title: "Fetching Boilerplate Code"
-            url: "#fetching-boilerplate-code"
-          - title: "Creating a Git Repository"
-            url: "#creating-a-git-repository"
-          - title: "Registering the Service in RHDH"
-            url: "#registering-the-service-in-rhdh"
-          - title: "Deploying with GitOps & ArgoCD"
-            url: "#deploying-with-gitops--argocd"
-      - title: "Building catalog-info.yaml"
-        url: "#building-catalog-infoyaml"
-        children:
-          - title: "Adding Metadata"
-            url: "#adding-metadata"
-          - title: "Adding Annotations for GitOps & CI/CD"
-            url: "#adding-annotations-for-gitops--cicd"
-          - title: "Adding Developer Links"
-            url: "#adding-developer-links"
-          - title: "Registering an API in RHDH"
-            url: "#registering-an-api-in-rhdh"
   - title: "Importing Template in Red Hat Developer Hub"
     url: "#importing-template-in-red-hat-developer-hub"
   - title: "Final Steps"
