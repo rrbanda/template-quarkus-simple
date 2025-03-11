@@ -16,19 +16,4 @@ back_to_top: true
 back_to_top_text: "Back to Top"
 
 # Sidebar navigation structure
-nav_order: 1
-nav:
-  - title: "Home"
-    url: "/"
-  - title: "Workshop Overview"
-    url: "#workshop-overview"
-  - title: "Agenda"
-    url: "#agenda"
-  - title: "What to Know Before Writing Software Templates"
-    url: "#what-to-know-before-writing-software-templates"
-  - title: "Building a Software Template"
-    url: "#building-a-software-template"
-  - title: "Importing Template in Red Hat Developer Hub"
-    url: "#importing-template-in-red-hat-developer-hub"
-  - title: "Final Steps"
-    url: "#final-steps"
+nav: []
