@@ -175,6 +175,7 @@ Entities are **imported and synchronized** in **three ways**:
 🚀 **Now let’s start building our Backstage Software Template!**  
 
 ---
+# Creating a Template Step by Step
 
 ## **Understanding the Software Template for Quarkus**
 Before we start building the software template step by step, let’s first understand the **key elements of our setup**.
