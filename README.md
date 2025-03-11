@@ -19,7 +19,7 @@ By the end of this session, participants will:
 
 ---
 
-### 📖 Before writing any code, let's understand how **Red Hat Developer Hub (RHDH)** organizes software components using **entities**.
+📖 Before writing any code, let's understand how **Red Hat Developer Hub (RHDH)** organizes software components using **entities**.
 
 ---
 
@@ -253,7 +253,7 @@ spec:
   owner: rhdh
   type: service
 ```
---
+---
  ### Explanation
 ### **What is `template.yaml`?**
 - `template.yaml` is a **Red Hat Developer Hub Software Template** that automates **project scaffolding**.
@@ -400,8 +400,8 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 📌 **Goal**: Automate the generation of **deployment manifests** for GitOps-based deployment.
 
 ### **Instructions**
-1️⃣ **Add the `fetch:template` step** to generate deployment resources.  
-2️⃣ **Ensure all necessary GitOps configurations** (e.g., ArgoCD, Kubernetes) are included.
+**Add the `fetch:template` step** to generate deployment resources.  
+**Ensure all necessary GitOps configurations** (e.g., ArgoCD, Kubernetes) are included.
 
 ```yaml
     - id: template-gitops-deployment
@@ -431,12 +431,12 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 ```
 
 ### **Explanation**
-✅ **Why use `fetch:template`?**  
+**Why use `fetch:template`?**  
 - This step **copies predefined GitOps deployment manifests** from the `manifests` folder.  
 - It **ensures that the correct Kubernetes resources (Deployments, Services, Routes, ConfigMaps, Secrets, etc.) are generated**.  
 - Using **templating expressions** (`${{ parameters.* }}`), it dynamically inserts **component-specific values** into the deployment files.
 
-✅ **What are these values used for?**  
+**What are these values used for?**  
 - **`component_id`**: The name of the microservice being deployed.  
 - **`source_repository_gitops` & `source_repository`**: The repositories where GitOps configurations and application code are stored.  
 - **`namespace`**: The Kubernetes namespace where the service will be deployed.  
@@ -444,15 +444,14 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 - **`gitops_namespace` & `gitops_project`**: Define where ArgoCD will manage GitOps-based deployments.  
 - **`repository_host`**: The SCM (GitLab/GitHub) host where the service is registered.  
 
-✅ **Why is this important?**  
+**Why is this important?**  
 - Automates **infrastructure provisioning** by **creating deployment configurations**.
 - **Ensures consistency** across deployments by **storing everything as code in a Git repository** (GitOps approach).
 - Makes the deployment **repeatable and scalable** across environments.
 
 ---
 
-### **🛠 Step 2.6: Publish GitOps Deployment Resources**
-📌 **Goal**: Push the generated deployment resources to a **Git repository** that ArgoCD will track.
+### **🛠 Step 2.6: Publish GitOps Deployment Resources to push the generated deployment resources to a **Git repository** that ArgoCD will track.
 
 ### **Instructions**
 1️⃣ **Add the `publish:gitlab` step** to **push GitOps configurations** to a separate repository.
@@ -471,11 +470,11 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 ```
 
 ### **Explanation**
-✅ **Why use `publish:gitlab`?**  
+**Why use `publish:gitlab`?**  
 - **Creates a new Git repository** (`component_id-gitops`) to store Kubernetes deployment files.  
 - Ensures **GitOps tools (e.g., ArgoCD) can track infrastructure changes** by watching this repo.  
 
-✅ **What does `sourcePath` do?**  
+**What does `sourcePath` do?**  
 - Specifies **which folder** (`component_id-gitops`) to push to GitLab.  
 - Ensures that only **GitOps-related deployment files** are committed and pushed, without unnecessary files.  
 
@@ -485,11 +484,10 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 
 ---
 
-### **🛠 Step 2.7: Create ArgoCD Resources**
-📌 **Goal**: Automatically configure **ArgoCD** to deploy and manage the microservice.
+### **🛠 Step 2.7: Create ArgoCD Resources** to Automatically configure **ArgoCD** to deploy and manage the microservice.
 
 ### **Instructions**
-1️⃣ **Add the `argocd:create-resources` step** to integrate the service with ArgoCD.
+**Add the `argocd:create-resources` step** to integrate the service with ArgoCD.
 
 ```yaml
     - id: create-argocd-resources
@@ -504,27 +502,26 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 ```
 
 ### **Explanation**
-✅ **What does this step do?**  
+**What does this step do?**  
 - Configures **ArgoCD to monitor the GitOps repo** (`component_id-gitops`).  
 - Creates an **ArgoCD Application** (`component_id-bootstrap`) that deploys the service.  
 - Watches the GitOps repository and **automatically applies changes** when new commits are made.
 
-✅ **Key Inputs**  
+**Key Inputs**  
 - **`appName`** → The name of the ArgoCD application (`component_id-bootstrap`).  
 - **`argoInstance`** → Specifies the ArgoCD instance (`main`).  
 - **`namespace`** → The Kubernetes namespace where ArgoCD manages the service (`rhdh-gitops`).  
 - **`repoUrl`** → The **GitOps repository** that ArgoCD will track.  
 - **`path`** → The **directory inside the repo** where ArgoCD looks for Kubernetes manifests (`argocd/`).  
 
-✅ **Why is this important?**  
+**Why is this important?**  
 - **Enables Continuous Deployment** → Every Git push triggers an automatic deployment via ArgoCD.  
 - **Ensures deployment consistency** → Developers don’t need to manually apply Kubernetes resources.  
 - **Allows rollback & history tracking** → If a bad deployment happens, ArgoCD can roll back to the last working state.
 
 ---
 
-### **🛠 Step 2.8: Output Links for Easy Access**
-📌 **Goal**: Provide direct **clickable links** to the generated Git repositories and Backstage Component.
+### **🛠 Step 2.8: Output Links for Easy Access** to Provide direct **clickable links** to the generated Git repositories and Backstage Component.
 
 ### **Instructions**
 1️⃣ **Define output links at the end of `template.yaml`**.
