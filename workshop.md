@@ -65,14 +65,14 @@ In this demo, we will use **three core entities**:
 ---
 # **🛠 Step 1: Setting Up the Demo**
 
-### **Prerequisites**
+## **Prerequisites**
 Before starting, ensure you have:
 - **VS Code open** with your Red Hat Developer Hub repository.
 - **A running Red Hat Developer Hub or Red Hat Developer Hub (RHDH) instance**.
 - **A working GitLab (or GitHub) instance**.
 - **ArgoCD configured** if testing deployments.
 
-# 🛠 Preparing Your Repository for Backstage Software Templates
+### 🛠 Preparing Your Repository for Backstage Software Templates
 
 Before starting, ensure you have the following:
 
@@ -95,7 +95,7 @@ gh auth login
 ```
 _(Follow the prompts to authenticate with GitHub.)_
 
-## Step 1: Fork and Clone the Repository
+### Step 1: Fork and Clone the Repository
 
 ### 1. Run the following command to fork and clone the repository:
 ```sh
@@ -146,7 +146,8 @@ The folder structure beloew represents a an example software template and in thi
 ### **A quick overview of `template.yaml`?**
 The Software Templates part of Backstage is a tool that can help you create Components inside Backstage. By default, it has the ability to load skeletons of code, template in some variables, and then publish the template to some locations like GitHub or GitLab.
 
-Templates are stored in the Software Catalog under a kind Template. You can create your own templates with a small yaml definition which describes the template and its metadata, along with some input variables that your template will need, and then a list of actions which are then executed by the scaffolding service.
+* Templates are stored in the Software Catalog under a kind Template.
+* You can create your own templates with a small yaml definition which describes the template and its metadata, along with some input variables that your template will need, and then a list of actions which are then executed by the scaffolding service.
 ---
 ## **🛠 Step 2: Start with a Blank `template.yaml`**
 **Goal**: Explain that Red Hat Developer Hub uses templates to scaffold services and that we will **incrementally build `template.yaml`**.
