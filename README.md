@@ -41,17 +41,19 @@ An **entity** is any **software-related object** that needs to be tracked, docum
 
 Entities are typically **stored in YAML files** (e.g., `catalog-info.yaml`) and are **registered** in the **Software Catalog**. These can be:
 
-#### **Entity Types in RHDH**  
-| **Entity Type** | **Kind**            | **Purpose**  |  
-|----------------|-----------------|----------------------|  
-| **Component**  | `kind: Component`  | Represents a **microservice, website, or library** running in production. |  
-| **API**        | `kind: API`        | Describes an **exposed API** that other services can use. |  
-| **Resource**   | `kind: Resource`   | A **database, S3 bucket, or cloud service** used by Components. |  
-| **System**     | `kind: System`     | A **collection of Components** that work together as a product. |  
-| **Domain**     | `kind: Domain`     | A **higher-level grouping** of multiple Systems. |  
-| **Template**   | `kind: Template`   | Defines how **new services are created** using Red Hat Developer Hub. |  
-| **User**       | `kind: User`       | Represents an **individual developer or team member**. |  
-| **Group**      | `kind: Group`      | Represents a **team or organization** within RHDH. |  
+#### Entity Types in Red Hat Developer Hub
+
+| **Entity Type** | **Kind**           | **Purpose** |
+|---------------|-----------------|-------------------------------|
+| **Component** | `kind: Component` | Represents a microservice, website, or library running in production. |
+| **API**       | `kind: API`       | Describes an exposed API that other services can use. |
+| **Resource**  | `kind: Resource`  | A database, S3 bucket, or cloud service used by Components. |
+| **System**    | `kind: System`    | A collection of Components that work together as a product. |
+| **Domain**    | `kind: Domain`    | A higher-level grouping of multiple Systems. |
+| **Template**  | `kind: Template`  | Defines how new services are created using Red Hat Developer Hub. |
+| **User**      | `kind: User`      | Represents an individual developer or team member. |
+| **Group**     | `kind: Group`     | Represents a team or organization within RHDH. |
+
 
 **In this demo , we will focus on three key entities:**
 
