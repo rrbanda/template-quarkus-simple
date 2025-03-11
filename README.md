@@ -443,7 +443,7 @@ Once the user provides input, the template should **fetch a predefined Quarkus p
 
 ---
 
-## Step 2.3: Create a Git Repository and Push Code
+## Step Create a Git Repository and Push Code
 ### **Instructions**
 1. **Add the `publish:gitlab` step**:
 
@@ -464,7 +464,7 @@ Once the user provides input, the template should **fetch a predefined Quarkus p
 
 ---
 
-## Step 2.4: Register the Service in Red Hat Developer Hub
+## Step Register the Service in Red Hat Developer Hub
 Once the repository is created, the service **must be registered in the RHDH Software Catalog**.
 
 ### Instructions
@@ -485,7 +485,7 @@ Once the repository is created, the service **must be registered in the RHDH Sof
 
 ---
 
-## Step 2.5: Deploy with GitOps & ArgoCD
+## Step Deploy with GitOps & ArgoCD
 Once the service is created, we need to **deploy it using GitOps**.
 
 ### Instructions**
@@ -509,7 +509,7 @@ Once the service is created, we need to **deploy it using GitOps**.
 
 ---
 
-## Step 2.6: Publish GitOps Deployment Resources
+## Step Publish GitOps Deployment Resources
 ### Instructions
 1. **Add the `publish:gitlab` step**:
 
@@ -529,7 +529,7 @@ Once the service is created, we need to **deploy it using GitOps**.
 
 ---
 
-## Step 2.7: Configure ArgoCD for Automated Deployment
+## Step Configure ArgoCD for Automated Deployment
 ### Instructions
 1. **Add the `argocd:create-resources` step**:
 
@@ -550,7 +550,7 @@ Once the service is created, we need to **deploy it using GitOps**.
 
 ---
 
-## Step 2.8: Provide Output Links for Easy Access
+## Step Provide Output Links for Easy Access
 ```yaml
   output:
     links:
