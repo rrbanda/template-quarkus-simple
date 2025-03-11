@@ -15,26 +15,46 @@ search_enabled: true
 back_to_top: true
 back_to_top_text: "Back to Top"
 
-# Sidebar navigation structure
+# Navigation Order
 nav_order: 1
+
+# Sidebar Navigation
 nav:
   - title: "Home"
     url: "/"
   - title: "Workshop Overview"
-    url: "/#workshop-overview"
+    url: "#workshop-overview"
   - title: "Agenda"
-    url: "/#agenda"
-  - title: "Understanding Software Catalog"
-    url: "/#understanding-software-catalog"
-  - title: "Understanding Entities in RHDH"
-    url: "/#understanding-entities-in-rhdh"
-  - title: "Step-by-Step Guide"
-    url: "/#step-by-step-guide"
-  - title: "Building template.yaml"
-    url: "/#building-templateyaml"
-  - title: "Building catalog-info.yaml"
-    url: "/#building-catalog-infoyaml"
-  - title: "Deploying with GitOps & ArgoCD"
-    url: "/#deploying-with-gitops--argocd"
+    url: "#agenda"
+  - title: "What to Know Before Writing Software Templates"
+    url: "#what-to-know-before-writing-software-templates"
+  - title: "Building a Software Template"
+    children:
+      - title: "Understanding the Software Template for Quarkus"
+        url: "#understanding-the-software-template-for-quarkus"
+      - title: "Creating a Template Step by Step"
+        children:
+          - title: "Defining User Input Parameters"
+            url: "#defining-user-input-parameters"
+          - title: "Fetching Boilerplate Code"
+            url: "#fetching-boilerplate-code"
+          - title: "Creating a Git Repository"
+            url: "#creating-a-git-repository"
+          - title: "Registering the Service in RHDH"
+            url: "#registering-the-service-in-rhdh"
+          - title: "Deploying with GitOps & ArgoCD"
+            url: "#deploying-with-gitops--argocd"
+      - title: "Building catalog-info.yaml"
+        children:
+          - title: "Adding Metadata"
+            url: "#adding-metadata"
+          - title: "Adding Annotations for GitOps & CI/CD"
+            url: "#adding-annotations-for-gitops--cicd"
+          - title: "Adding Developer Links"
+            url: "#adding-developer-links"
+          - title: "Registering an API in RHDH"
+            url: "#registering-an-api-in-rhdh"
+  - title: "Importing Template in Red Hat Developer Hub"
+    url: "#importing-template-in-red-hat-developer-hub"
   - title: "Final Steps"
-    url: "/#final-steps"
+    url: "#final-steps"
