@@ -1,7 +1,5 @@
 title: "Red Hat Developer Hub"
 description: "Learn creating software templates"
-
-# Use the official Just the Docs theme
 remote_theme: just-the-docs/just-the-docs
 
 # Plugins required for GitHub Pages
@@ -12,7 +10,30 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
 
-# Enable sidebar navigation
+# Enable search and sidebar navigation
 search_enabled: true
 back_to_top: true
 back_to_top_text: "Back to Top"
+
+# Sidebar navigation structure (pointing to sections within README.md)
+nav:
+  - title: "Home"
+    url: "/"
+  - title: "Workshop Overview"
+    url: "/#workshop-overview"
+  - title: "Agenda"
+    url: "/#agenda"
+  - title: "Understanding Software Catalog"
+    url: "/#understanding-software-catalog"
+  - title: "Understanding Entities in RHDH"
+    url: "/#understanding-entities-in-rhdh"
+  - title: "Step-by-Step Guide"
+    url: "/#step-by-step-guide"
+  - title: "Building template.yaml"
+    url: "/#building-templateyaml"
+  - title: "Building catalog-info.yaml"
+    url: "/#building-catalog-infoyaml"
+  - title: "Deploying with GitOps & ArgoCD"
+    url: "/#deploying-with-gitops--argocd"
+  - title: "Final Steps"
+    url: "/#final-steps"
