@@ -8,13 +8,24 @@
    - [Entities in Red Hat Developer Hub](#entities-in-red-hat-developer-hub)
    - [How Backstage Templates Automate This Process](#how-backstage-templates-automate-this-process)
    - [How Entities Are Added to the Software Catalog](#how-entities-are-added-to-the-software-catalog)
-   - [Example catalog-info.yaml](#example-catalog-info-yaml)
-4. [Folder Structure of Template Repository](#folder-structure-of-template-repository)
-5. [Building template.yaml](#building-templateyaml)
-6. [Building catalog-info.yaml](#building-catalog-infoyaml)
-7. [Deploying with GitOps & ArgoCD](#deploying-with-gitops-and-argocd)
-8. [Importing Template in Red Hat Developer Hub](#importing-template-in-red-hat-developer-hub)
-9. [Final Steps](#final-steps)
+   - [Example catalog-info.yaml](#example-catalog-infoyaml)
+4. [Building a Software Template](#building-a-software-template)
+   - [Folder Structure of Template Repository](#folder-structure-of-template-repository)
+   - [Pre-existing Code (Quarkus & Manifests)](#pre-existing-code-quarkus--manifests)
+   - [Creating a Template Step by Step](#creating-a-template-step-by-step)
+     - [Defining Input Parameters](#defining-input-parameters)
+     - [Fetching Source Code](#fetching-source-code)
+     - [Creating Git Repositories](#creating-git-repositories)
+     - [Publishing the Template](#publishing-the-template)
+   - [Building catalog-info.yaml](#building-catalog-infoyaml)
+     - [Start with a Blank catalog-info.yaml](#start-with-a-blank-catalog-infoyaml)
+     - [Add Metadata (Description & Tags)](#add-metadata-description--tags)
+     - [Deploying with GitOps & ArgoCD](#deploying-with-gitops--argocd)
+     - [Add Developer Links for OpenShift Dev Spaces](#add-developer-links-for-openshift-dev-spaces)
+     - [Register the API in Red Hat Developer Hub](#register-the-api-in-red-hat-developer-hub)
+5. [Importing Template in Red Hat Developer Hub](#importing-template-in-red-hat-developer-hub)
+6. [Final Steps](#final-steps)
+
 
 
 ## Workshop Overview  
@@ -682,18 +693,23 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 
 **Test It in Red Hat Developer Hub** → The new service should appear in the catalog.
 
-## Building catalog-info.yaml
-### **🛠 Step 3: Build `catalog-info.yaml` Incrementally** and Register the service in Red Hat Developer Hub by **building `catalog-info.yaml` step by step**.
+Here’s your **corrected and well-structured** Markdown content for **Building `catalog-info.yaml`**, ensuring **clarity, logical flow, and easy readability**. You can copy and paste it into your `.md` file:
 
+```md
+# 6. Building `catalog-info.yaml`
 
-### ** Start with a Blank `catalog-info.yaml`**
+In this section, we will **incrementally build `catalog-info.yaml`** to properly register a service in **Red Hat Developer Hub (RHDH)**. This process ensures that your service is **discoverable, well-documented, and manageable** in the **Software Catalog**.
 
-**Why?** Every service created by Red Hat Developer Hub **must be registered** in the catalog.
+---
 
-#### **Instructions**
+## 6.1 Start with a Blank `catalog-info.yaml`
 
-1.  **Create a new file**: `catalog-info.yaml`
-2.  **Add the basic `Component` definition**:
+### **Why is this needed?**  
+Every service created in **RHDH** must be **registered in the catalog** so that it can be tracked and managed.
+
+### **Instructions**  
+1. **Create a new file**: `catalog-info.yaml`  
+2. **Add the basic `Component` definition**:  
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
@@ -704,25 +720,24 @@ spec:
   type: service
   lifecycle: development
   owner: ${{values.owner | dump}}
-
 ```
 
-### Explanation
+### **Explanation**
+- **What is `kind: Component`?**  
+  - This tells **RHDH** that the entity represents a **microservice**.  
+- **What is `lifecycle: development`?**  
+  - This indicates that the service is **still in development**, not yet in production.  
+- **Why do we need `owner`?**  
+  - **RHDH** requires every service to have an **owner** for accountability.
 
--   **What is `kind: Component`?**
-    -   It tells Red Hat Developer Hub that **this entity represents a microservice**.
--   **What is `lifecycle: development`?**
-    -   It shows that the service is **still being developed, not yet in production**.
--   **Why do we need `owner`?**
-    -   Red Hat Developer Hub **requires every service to have an owner** for accountability.
+---
 
-----------
+## 6.2 Add Metadata (Description & Tags)
 
-### **3.1 Add Metadata (Description & Tags)**
+### **Why is this important?**  
+Adding **metadata** allows users to **identify and search** for the service inside **RHDH**.
 
-**Why?** Helps users **identify** and **search** for the service.
-
-#### **Update `metadata` section**:
+### **Update `metadata` section**:
 
 ```yaml
 metadata:
@@ -733,23 +748,21 @@ metadata:
   tags:
     - java
     - quarkus
-
 ```
 
-###Explanation
+### **Explanation**
+- **What does `description` do?**  
+  - Provides a **short summary** of the service to help developers understand its purpose.  
+- **Why add `tags`?**  
+  - Tags make the service **easier to find** inside **Red Hat Developer Hub**.
 
--   **What does `description` do?**
-    -   It provides **a short summary of the service** so developers can understand what it does.
--   **Why add `tags`?**
-    -   It makes the service **easier to find** inside Red Hat Developer Hub.
+---
 
-----------
-## Deploying with GitOps & ArgoCD
-### **3.2 Add Annotations for GitOps and CI/CD**
+## 6.3 Deploying with GitOps & ArgoCD  
 
-**Why?** These annotations **link Red Hat Developer Hub to GitLab, ArgoCD, and Kubernetes**.
+To **enable automation with GitOps**, we must add **annotations** that link **RHDH** to GitLab, ArgoCD, and Kubernetes.
 
-#### **Update `annotations` section**:
+### **Update `annotations` section**:
 
 ```yaml
   annotations:
@@ -759,24 +772,23 @@ metadata:
     backstage.io/source-location: url:https://${{values.host}}/${{values.destination}}
     backstage.io/techdocs-ref: url:https://${{values.host}}/${{values.destination}}
     gitlab.com/project-slug: ${{values.destination}}
-
 ```
-###Explanation
 
--   **Why do we need `argocd/app-selector`?**
-    -   This **links the service to ArgoCD**, allowing Red Hat Developer Hub to track GitOps deployments.
--   **What is `backstage.io/source-location`?**
-    -   It tells Red Hat Developer Hub **where the service’s source code lives** (GitLab, GitHub, etc.).
--   **What is `janus-idp.io/tekton`?**
-    -   It **enables CI/CD tracking in Red Hat Developer Hub** for Tekton pipelines.
+### **Explanation**
+- **What is `argocd/app-selector`?**  
+  - **Links the service to ArgoCD**, allowing **RHDH** to track **GitOps deployments**.  
+- **What is `backstage.io/source-location`?**  
+  - Specifies where the **service’s source code is stored** (e.g., **GitLab or GitHub**).  
+- **What is `janus-idp.io/tekton`?**  
+  - Enables **CI/CD pipeline tracking** in **RHDH**.
 
-----------
+---
 
-### **3.3 Add Developer Links for OpenShift Dev Spaces**
+## 6.4 Add Developer Links for OpenShift Dev Spaces
 
-**Why?** Allows developers to **open the service directly in VS Code or JetBrains**.
+To **enhance the developer experience**, we can provide **direct links** for **opening the service in VS Code or JetBrains**.
 
-#### **Update `links` section**:
+### **Update `links` section**:
 
 ```yaml
   links:
@@ -786,20 +798,19 @@ metadata:
     - url: https://devspaces.${{values.cluster}}/#https://${{values.host}}/${{values.destination}}?che-editor=che-incubator/che-idea/latest
       title: OpenShift Dev Spaces (JetBrains IntelliJ)
       icon: web
-
 ```
-###Explanation
 
--   **Why add these links?**
-    -   Developers can click these **to open the service in OpenShift Dev Spaces** for live coding.
+### **Explanation**
+- **Why add these links?**  
+  - Developers can click these **to open the service in OpenShift Dev Spaces** for live coding.
 
-----------
+---
 
-### **4 Register the API in Red Hat Developer Hub**
+## 6.5 Register the API in Red Hat Developer Hub
 
-**Why?** If the service **exposes an API**, we need to **document it** in Red Hat Developer Hub.
+If the service **exposes an API**, we must document it in **RHDH**.
 
-#### **Add API registration to `catalog-info.yaml`**:
+### **Add API registration to `catalog-info.yaml`**:
 
 ```yaml
 ---
@@ -816,24 +827,30 @@ spec:
   owner: ${{values.owner | dump}}
   definition:
     $text: ./openapi.yaml
-
 ```
-### Explanation
+
+### **Explanation**
 
 #### **What is `kind: API`?**  
-- The `kind: API` declaration in **`catalog-info.yaml`** tells Red Hat Developer Hub that the entity being registered is an **API** rather than a standard microservice (`kind: Component`).  
-- This allows Red Hat Developer Hub to manage the API separately from services, making it **discoverable, reusable, and integrable** with other systems.  
-- APIs registered this way can be **documented, versioned, and consumed** by other teams directly from the Red Hat Developer Hub UI.  
+- This tells **RHDH** that the entity being registered is an **API** rather than a microservice (`kind: Component`).  
+- This ensures that **APIs are properly documented, reusable, and discoverable**.  
 
 #### **What is `definition: $text: ./openapi.yaml`?**  
-- This field **links the API entity** to an **OpenAPI specification** stored in `openapi.yaml`.  
-- It enables **automatic API documentation rendering** in Red Hat Developer Hub, allowing developers to view, interact with, and test the API within the Red Hat Developer Hub UI.  
-- This helps teams maintain **consistency in API documentation** while ensuring APIs are easily discoverable and accessible.  
+- This links the API to an **OpenAPI spec file** (`openapi.yaml`).  
+- Enables **automatic API documentation rendering** inside **RHDH**.  
 
 #### **Why does RHDH need this step?**  
-- **Red Hat Developer Hub (RHDH)** uses **`catalog-info.yaml`** to recognize and register software components and APIs into its **Software Catalog**.  
-- Manually importing a component ensures that the service/API is **visible, traceable, and manageable** within the enterprise developer portal.  
-- The registration process allows **teams to standardize API documentation**, monitor API usage, and enable seamless **API lifecycle management** within RHDH.  
+- Ensures that **all APIs and services are properly documented**.  
+- Standardizes API **versioning, governance, and discovery** in the **Software Catalog**.  
+
+---
+
+### **Final Thoughts on `catalog-info.yaml`**
+✔️ `catalog-info.yaml` ensures **services and APIs** are registered correctly in **RHDH**.  
+✔️ It includes **metadata, annotations, GitOps configuration, and API registration**.  
+✔️ **With this file in place**, developers can **easily discover, use, and manage services** in Red Hat Developer Hub.  
+
+✅ Now that **`catalog-info.yaml` is ready**, let’s move to the next steps! 🚀  
 
 ---
 ## Importing Template in Red Hat Developer Hub  
@@ -859,7 +876,7 @@ This process ensures that **all APIs and services are properly documented and tr
 
 Once the template and its associated APIs are successfully registered, developers can **instantly create new services** by selecting it from the **Create** menu in RHDH.  
 
-Now that the **template is available**, let’s move on to **final validation steps!** ✅  
+Now that the **template is available**, let’s move on to **final validation steps!**
 
 
 ## Final Steps  
