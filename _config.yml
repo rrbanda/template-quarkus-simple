@@ -1,5 +1,5 @@
 title: "Red Hat Developer Hub"
-description: "Learn creating software templates"
+description: "A Software Template for Quarkus Application"
 remote_theme: just-the-docs/just-the-docs
 
 # Plugins required for GitHub Pages
@@ -10,10 +10,7 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
 
-# Enable sidebar and search
-search_enabled: true
-back_to_top: true
-back_to_top_text: "Back to Top"
-
-# Sidebar navigation structure
-nav: []
+# Disable Sidebar Completely
+nav: false
+search_enabled: false
+back_to_top: false
