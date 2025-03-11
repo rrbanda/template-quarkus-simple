@@ -115,7 +115,7 @@ With a **Backstage Software Template**, **this entire setup is automated**:
 
 ---
 
-## Example catalog-info.yaml
+## Example catalog-info yaml
 
 When an entity is registered in RHDH, it is defined in a `catalog-info.yaml` file.
 
