@@ -27,6 +27,7 @@ By the end of this session, participants will:
 The **Software Catalog** in **Red Hat Developer Hub (RHDH)** is a **centralized asset tracker** that stores and manages all the software-related entities in your organization.
 
 It helps teams:
+
 ✔️ **Track ownership** of services and APIs.  
 ✔️ **Discover and document** microservices and dependencies.  
 ✔️ **Ensure consistency** in software and infrastructure.  
