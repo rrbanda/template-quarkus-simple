@@ -695,14 +695,14 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 
 Here’s your **corrected and well-structured** Markdown content for **Building `catalog-info.yaml`**, ensuring **clarity, logical flow, and easy readability**. You can copy and paste it into your `.md` file:
 
-```md
-# 6. Building `catalog-info.yaml`
+
+# Building `catalog-info.yaml`
 
 In this section, we will **incrementally build `catalog-info.yaml`** to properly register a service in **Red Hat Developer Hub (RHDH)**. This process ensures that your service is **discoverable, well-documented, and manageable** in the **Software Catalog**.
 
 ---
 
-## 6.1 Start with a Blank `catalog-info.yaml`
+## Start with a Blank `catalog-info.yaml`
 
 ### **Why is this needed?**  
 Every service created in **RHDH** must be **registered in the catalog** so that it can be tracked and managed.
