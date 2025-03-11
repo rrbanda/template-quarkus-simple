@@ -1,17 +1,27 @@
 # 🎯 Create Red Hat Developer Hub Software Templates for Quarkus based application.
 
-## Table of Contents
-1. [Workshop Overview](#workshop-overview)
-2. [Agenda](#agenda)
-3. [Understanding Software Catalog](#understanding-software-catalog)
-4. [Understanding Entities in RHDH](#understanding-entities-in-rhdh)
-5. [Step-by-Step Guide](#step-by-step-guide)
-6. [Building template.yaml](#building-templateyaml)
-7. [Building catalog-info.yaml](#building-catalog-infoyaml)
-8. [Deploying with GitOps & ArgoCD](#deploying-with-gitops--argocd)
-9. [Final Steps](#final-steps)
+## 📖 Table of Contents
+1. [Workshop Overview](#workshop-overview)  
+2. [Agenda](#agenda)  
+3. [What to Know Before Writing Software Templates](#what-to-know-before-writing-software-templates)  
+   - [Understanding the Software Catalog](#understanding-the-software-catalog)  
+   - [Understanding Entities in Red Hat Developer Hub](#understanding-entities-in-red-hat-developer-hub)  
+   - [How Software Components Work Together](#how-software-components-work-together)  
+4. [Folder Structure of the Template Repository](#folder-structure-of-the-template-repository)  
+5. [Building `template.yaml`](#building-templateyaml)  
+   - [Defining Parameters](#defining-parameters)  
+   - [Fetching Boilerplate Code](#fetching-boilerplate-code)  
+   - [Publishing to Git Repository](#publishing-to-git-repository)  
+6. [Building `catalog-info.yaml`](#building-catalog-infoyaml)  
+   - [Registering Components](#registering-components)  
+   - [Linking APIs](#linking-apis)  
+   - [Configuring GitOps and CI/CD](#configuring-gitops-and-cicd)  
+7. [Deploying with GitOps & ArgoCD](#deploying-with-gitops--argocd)  
+8. [Importing the Template into Red Hat Developer Hub](#importing-the-template-into-red-hat-developer-hub)  
+9. [Final Steps & Customization](#final-steps--customization)  
 
-## Workshop Overview
+## Workshop Overview  
+This workshop will guide you through creating **Backstage software templates** using **Red Hat Developer Hub (RHDH)**...
 
 By the end of this session, participants will:
 - **Learn how to create a Red Hat Developer Hub Software Template from scratch for a Quarkus based application.**
