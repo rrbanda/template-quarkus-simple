@@ -26,7 +26,7 @@ By the end of this session, participants will:
 Everything inside **Red Hat Developer Hub (RHDH)** is considered an **entity**.  
 An **entity** represents a **real-world object** that is **registered and managed within the Software Catalog**.  
 
-### **Common Entity Types in RHDH:**  
+#### **Common Entity Types in RHDH:**  
 
 - **A microservice** (e.g., a backend service running in production)  
 - **An API** (e.g., an OpenAPI-defined REST or GraphQL endpoint)  
