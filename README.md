@@ -19,7 +19,7 @@ By the end of this session, participants will:
 
 ---
 
-## 📖 Before writing any code, let's understand how **Red Hat Developer Hub (RHDH)** organizes software components using **entities**.
+### 📖 Before writing any code, let's understand how **Red Hat Developer Hub (RHDH)** organizes software components using **entities**.
 
 ---
 
