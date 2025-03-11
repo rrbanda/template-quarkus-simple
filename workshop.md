@@ -1,10 +1,21 @@
-# **🎯Learning Software templates using an example Quarkus Service**
-By the end of this session, participants will:
-- **Learn how to create a Red Hat Developer Hub Software Template from scratch for a Quarkus based application.**
-- **Understand the folder structure and role of each file.**
-- **Build `template.yaml` and `catalog-info.yaml`.**
-- **Register and import services in Red Hat Developer Hub (RHDH).**
-- **Use the imported template from RHDH Software Catalog and create repos with necessary code that developer can start using to build further.**
+---
+title: "Red Hat Developer Hub"
+nav_order: 1
+---
+
+
+# Create Red Hat Developer Hub Software Templates for Quarkus
+
+## Table of Contents
+1. [Workshop Overview](#workshop-overview)
+2. [Agenda](#agenda)
+3. [Understanding Software Catalog](#understanding-software-catalog)
+4. [Understanding Entities in RHDH](#understanding-entities-in-rhdh)
+5. [Step-by-Step Guide](#step-by-step-guide)
+6. [Building `template.yaml`](#building-templateyaml)
+7. [Building `catalog-info.yaml`](#building-catalog-infoyaml)
+8. [Deploying with GitOps & ArgoCD](#deploying-with-gitops--argocd)
+9. [Final Steps](#final-steps)
 
 ---
 ## 📜 **Agenda**
@@ -18,6 +29,15 @@ By the end of this session, participants will:
 | **28-30 mins** | **Step 4: Q&A + Customization** | Let participants tweak the template. |
 
 ---
+
+## **Workshop Overview** {#workshop-overview}
+
+By the end of this session, participants will:
+- **Learn how to create a Red Hat Developer Hub Software Template from scratch for a Quarkus based application.**
+- **Understand the folder structure and role of each file.**
+- **Build `template.yaml` and `catalog-info.yaml`.**
+- **Register and import services in Red Hat Developer Hub (RHDH).**
+- **Use the imported template from RHDH Software Catalog and create repos with necessary code that developer can start using to build further.**
 
 ## 📖 Before writing any code, let's understand how **Red Hat Developer Hub (RHDH)** organizes software components using **entities**.
 
@@ -131,7 +151,7 @@ Entities are **imported and synchronized** in **three ways**:
 
 ---
 
-## Summary  
+### Summary  
 
 ✔️ The **Software Catalog** is the **source of truth** for all software in your organization.  
 ✔️ **Entities** such as **Components, APIs, Resources, and Templates** are registered inside the Software Catalog.  
