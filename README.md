@@ -835,14 +835,32 @@ spec:
 - Manually importing a component ensures that the service/API is **visible, traceable, and manageable** within the enterprise developer portal.  
 - The registration process allows **teams to standardize API documentation**, monitor API usage, and enable seamless **API lifecycle management** within RHDH.  
 
-#### **How to Register an API in RHDH?**  
-1. Navigate to **"Register Component"** in RHDH.  
-2. Enter the **Git repository URL** where `catalog-info.yaml` is stored.  
+---
+## Importing Template in Red Hat Developer Hub  
+
+Once you have built your **Software Template** and defined `catalog-info.yaml`, the next step is to **register it in Red Hat Developer Hub (RHDH)** so that developers can use it to generate new services.  
+
+### 8.1 How to Register a Template in RHDH  
+1. **Navigate to "Register Component"** in the **Red Hat Developer Hub UI**.  
+2. **Enter the Git repository URL** where the `catalog-info.yaml` file is stored.  
+3. Click **Analyze → Import** to scan and register the template in the catalog.  
+4. Once imported, navigate to **Create → Choose Your Template** to verify that it appears in the list of available templates.  
+
+### 8.2 How to Register an API in RHDH  
+If your **template includes an API**, you need to ensure that it is also registered in **RHDH** for proper discoverability and documentation.  
+
+1. **Navigate to "Register Component"** in RHDH.  
+2. **Enter the Git repository URL** where the `catalog-info.yaml` is stored.  
 3. Click **Analyze → Import** to add the API to the catalog.  
 
-This process ensures **all APIs and services are properly documented and tracked** within RHDH, improving discoverability and governance. 🚀
+This process ensures that **all APIs and services are properly documented and tracked** within RHDH, improving discoverability and governance. 🚀  
 
 ---
+
+Once the template and its associated APIs are successfully registered, developers can **instantly create new services** by selecting it from the **Create** menu in RHDH.  
+
+Now that the **template is available**, let’s move on to **final validation steps!** ✅  
+
 
 ## Final Steps  
 
