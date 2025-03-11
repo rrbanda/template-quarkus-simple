@@ -1,11 +1,15 @@
 title: "Red Hat Developer Hub"
-description: "Create Software Templates"
+description: "Learn creating software templates"
 theme: just-the-docs
-search_enabled: true
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-include-cache
 
-# Enable sidebar navigation within a single file
+# Enable sidebar navigation
+search_enabled: true
 back_to_top: true
 back_to_top_text: "Back to Top"
-
-# Order of Sections (Optional)
-nav_order: 1
