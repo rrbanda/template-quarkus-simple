@@ -1,4 +1,4 @@
-# 🎯 Create Red Hat Developer Hub Software Templates for Quarkus based application.
+# Create Red Hat Developer Hub Software Templates for Quarkus based application.
 
 ## Table of Contents
 1. [Workshop Overview](#workshop-overview)
@@ -220,14 +220,14 @@ This repository consists of two main parts:
 ```
 ---
 
-### **🔹 Why Focus on `template.yaml` and `catalog-info.yaml`?**
+###  Why Focus on `template.yaml` and `catalog-info.yaml`?
 To convert this repository into a **Red Hat Developer Hub Software Template**, we need to ensure:
 1️⃣ **`template.yaml` is correctly defined** → It will guide RHDH on how to scaffold new services based on this template.  
 2️⃣ **`catalog-info.yaml` is properly structured** → This will ensure that every generated service is correctly registered in the Software Catalog.
 
 ---
 
-### **⏭️ What’s Next?**
+### What’s Next?
 Now that we understand the **repository structure** and our **focus areas**, let’s start **building the software template step by step**! 🚀
 
 ---
