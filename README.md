@@ -236,26 +236,6 @@ cd create-software-template
 
 ---
 
-
-Your folder structure explanation is **clear and well-organized**, but I have a few **minor improvements** to ensure clarity and consistency:
-
-### **Suggested Improvements**
-1. **Fix small typos**:  
-   - "beloew" → "below"  
-   - "elemnents" → "elements"  
-   - "an example software template" → "an example of a software template"  
-   - "in this regard we assume" → "Here, we assume"  
-
-2. **Clarify the purpose of the folder structure**:  
-   - Make it clearer that the **Quarkus service code** and **deployment files** are assumed to be pre-written.
-
-3. **Formatting consistency**:  
-   - Add descriptions to **all** top-level folders for better clarity.  
-   - Ensure indentation remains consistent in code blocks.  
-
----
-
-
 # Understanding the Folder Structure
 
 The folder structure below represents an **example of a software template**.  
@@ -285,12 +265,6 @@ Here, we assume that the **Quarkus service code and manifests are already writte
 
 ---
 
-
-Here is your **corrected and structured** content for **Building `template.yaml`**, ensuring proper subsections and logical flow. You can copy and paste this into your `.md` file:
-
----
-
-```md
 # Building `template.yaml`
 
 ## 🛠 A Quick Overview of `template.yaml`
