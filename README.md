@@ -8,13 +8,14 @@
    - [Entities in Red Hat Developer Hub](#entities-in-red-hat-developer-hub)
    - [How Backstage Templates Automate This Process](#how-backstage-templates-automate-this-process)
    - [How Entities Are Added to the Software Catalog](#how-entities-are-added-to-the-software-catalog)
-   - [Example catalog-info.yaml](#example-catalog-infoyaml)
+   - [Example catalog-info.yaml](#example-catalog-info-yaml)
 4. [Folder Structure of Template Repository](#folder-structure-of-template-repository)
 5. [Building template.yaml](#building-templateyaml)
 6. [Building catalog-info.yaml](#building-catalog-infoyaml)
-7. [Deploying with GitOps & ArgoCD](#deploying-with-gitops--argocd)
+7. [Deploying with GitOps & ArgoCD](#deploying-with-gitops-and-argocd)
 8. [Importing Template in Red Hat Developer Hub](#importing-template-in-red-hat-developer-hub)
 9. [Final Steps](#final-steps)
+
 
 
 ## Workshop Overview  
