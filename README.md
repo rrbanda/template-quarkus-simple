@@ -11,6 +11,7 @@
 8. [Deploying with GitOps & ArgoCD](#deploying-with-gitops--argocd)
 9. [Final Steps](#final-steps)
 
+## 📖 Workshop Overview
 
 By the end of this session, participants will:
 - **Learn how to create a Red Hat Developer Hub Software Template from scratch for a Quarkus based application.**
@@ -20,7 +21,7 @@ By the end of this session, participants will:
 - **Use the imported template from RHDH Software Catalog and create repos with necessary code that developer can start using to build further.**
 
 ---
-## 📜 **Agenda**
+## 📜 Agenda
 
 | **Time**  | **Activity**                     | **Purpose**  |
 |-----------|----------------------------------|-------------|
@@ -37,7 +38,7 @@ By the end of this session, participants will:
 
 ---
 
-#### 🔍 What is the Software Catalog?  
+## 🔍 Understanding Software Catalog
 The **Software Catalog** in **Red Hat Developer Hub (RHDH)** is a **centralized asset tracker** that stores and manages all the software-related entities in your organization.
 
 It helps teams:
@@ -158,9 +159,10 @@ Entities are **imported and synchronized** in **three ways**:
   * Now let’s start building our Backstage Software Template!**  
 
 ---
-# **🛠 Step 1: Setting Up the Demo**
+## Step-by-Step Guide
+### **🛠 Step 1: Setting Up the Demo**
 
-## **Prerequisites**
+### **Prerequisites**
 Before starting, ensure you have:
 - VS Code or any other IDE .
 - A running Red Hat Developer Hub instance**.
@@ -238,6 +240,8 @@ The folder structure beloew represents a an example software template and in thi
 
 ```
 ---
+## Building template.yaml
+
 ### **A quick overview of `template.yaml`?**
 The Software Templates part of Backstage is a tool that can help you create Components inside Backstage. By default, it has the ability to load skeletons of code, template in some variables, and then publish the template to some locations like GitHub or GitLab.
 
@@ -622,8 +626,8 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 
 **⏩ Test It in Red Hat Developer Hub** → The new service should appear in the catalog.
 
-
-## **🛠 Step 3: Build `catalog-info.yaml` Incrementally** and Register the service in Red Hat Developer Hub by **building `catalog-info.yaml` step by step**.
+## Building catalog-info.yaml
+### **🛠 Step 3: Build `catalog-info.yaml` Incrementally** and Register the service in Red Hat Developer Hub by **building `catalog-info.yaml` step by step**.
 
 
 ### ** Start with a Blank `catalog-info.yaml`**
@@ -684,7 +688,7 @@ metadata:
     -   It makes the service **easier to find** inside Red Hat Developer Hub.
 
 ----------
-
+## Deploying with GitOps & ArgoCD
 ### **3.2 Add Annotations for GitOps and CI/CD**
 
 **Why?** These annotations **link Red Hat Developer Hub to GitLab, ArgoCD, and Kubernetes**.
