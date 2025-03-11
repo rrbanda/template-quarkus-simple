@@ -1,4 +1,17 @@
-# **🎯Learning Software templates using an example Quarkus Service**
+# 🎯 Learning Software Templates Using an Example Quarkus Service
+
+## 📜 Table of Contents
+1. [Workshop Overview](#workshop-overview)
+2. [Agenda](#agenda)
+3. [Understanding Software Catalog](#understanding-software-catalog)
+4. [Understanding Entities in RHDH](#understanding-entities-in-rhdh)
+5. [Step-by-Step Guide](#step-by-step-guide)
+6. [Building template.yaml](#building-templateyaml)
+7. [Building catalog-info.yaml](#building-catalog-infoyaml)
+8. [Deploying with GitOps & ArgoCD](#deploying-with-gitops--argocd)
+9. [Final Steps](#final-steps)
+
+
 By the end of this session, participants will:
 - **Learn how to create a Red Hat Developer Hub Software Template from scratch for a Quarkus based application.**
 - **Understand the folder structure and role of each file.**
