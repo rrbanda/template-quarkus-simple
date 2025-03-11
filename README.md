@@ -52,7 +52,7 @@ By the end of this session, participants will:
 
 ---
 
-# 📖 **What to Know Before Writing Software Templates**
+# What to Know Before Writing Software Templates
 
 Before writing any code, let's understand how **Red Hat Developer Hub (RHDH)** organizes software components using **entities**.
 
