@@ -1,11 +1,10 @@
 title: "Red Hat Developer Hub"
 description: "Learn creating software templates"
 
-# Use Just the Docs theme
-theme: just-the-docs
+# Use the official Just the Docs theme
 remote_theme: just-the-docs/just-the-docs
 
-# Plugins for GitHub Pages
+# Plugins required for GitHub Pages
 plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
@@ -17,7 +16,3 @@ plugins:
 search_enabled: true
 back_to_top: true
 back_to_top_text: "Back to Top"
-
-# Navigation settings
-nav_sort: case_insensitive
-permalink: pretty
