@@ -19,7 +19,7 @@ By the end of this session, participants will:
 
 ---
 
-## 🛠 Understanding Backstage Entities Before We Start
+### 📖 Understanding Backstage Entities Before We Start
 
 #### Before writing any code, let's understand how **Red Hat Developer Hub** organizes software components using **entities**.
 
@@ -37,7 +37,7 @@ Entities in **Red Hat Developer Hub** are defined using **YAML files**, specific
 
 ---
 
-## **Key Entities We Will Work With**  
+##### **Key Entities We Will Work With**  
 In this demo, we will use **three core entities**:  
 
 | **Entity Type** | **Kind**            | **Purpose**  |  
@@ -48,14 +48,14 @@ In this demo, we will use **three core entities**:
 
 ---
 
-## **How Do These Work Together?**  
+##### **How Do These Work Together?**  
 - A **Template** (`kind: Template`) helps generate a **Component** (`kind: Component`).  
 - A **Component** represents a **real microservice** deployed in production.  
 - If a **Component exposes an API**, it is **linked to an API entity** (`kind: API`) in the catalog.  
 
 ---
 
-## **Example Workflow:**  
+##### **Example Workflow:**  
 * A **developer fills out a form** in **Red Hat Developer Hub** → The **Template** creates a **new Git repository** with Quarkus boilerplate.
 * The service is **registered as a `Component` in the catalog** and linked to a **Kubernetes deployment**.
 * If the service **exposes an API**, it is also **registered as an `API` entity** in RHDH.  
