@@ -54,9 +54,9 @@ Entities are typically **stored in YAML files** (e.g., `catalog-info.yaml`) and 
 
 **In this demo , we will focus on three key entities:**
 
-**Templates** → Automate service creation.  
-**Components** → Represent microservices in production.  
-**APIs** → Define interfaces that services expose.  
+* Templates** → Automate service creation.
+* Components** → Represent microservices in production.
+* APIs** → Define interfaces that services expose.  
 
 ---
 
