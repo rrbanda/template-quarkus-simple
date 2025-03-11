@@ -230,33 +230,71 @@ cd create-software-template
 
 ---
 
-#  🛠 Understanding the Folder Structure
 
-The folder structure beloew represents a an example software template and in this regard we assume that the code for quarkus service, manifests is already written for the purposes of focusing on developer hub related elemnents of a software template 
+Your folder structure explanation is **clear and well-organized**, but I have a few **minor improvements** to ensure clarity and consistency:
+
+### **Suggested Improvements**
+1. **Fix small typos**:  
+   - "beloew" → "below"  
+   - "elemnents" → "elements"  
+   - "an example software template" → "an example of a software template"  
+   - "in this regard we assume" → "Here, we assume"  
+
+2. **Clarify the purpose of the folder structure**:  
+   - Make it clearer that the **Quarkus service code** and **deployment files** are assumed to be pre-written.
+
+3. **Formatting consistency**:  
+   - Add descriptions to **all** top-level folders for better clarity.  
+   - Ensure indentation remains consistent in code blocks.  
+
+---
+
+### **✅ Updated Version**
+```md
+# 🛠 Understanding the Folder Structure
+
+The folder structure below represents an **example of a software template**.  
+Here, we assume that the **Quarkus service code and manifests are already written**, allowing us to focus on the **Red Hat Developer Hub (RHDH) elements** of a software template.
 
 ```
 # 📁 template-quarkus-simple-main
 
 ## ├── 📁 manifests
-│   ├── 📁 argocd               # ArgoCD application definitions
-│   ├── 📁 helm                 # Helm charts for deployment
+│   ├── 📁 argocd               # ArgoCD application definitions for GitOps deployment
+│   ├── 📁 helm                 # Helm charts for Kubernetes deployment
 
 ## ├── 📁 skeleton
 │   ├── 📄 catalog-info.yaml     # Service metadata for Red Hat Developer Hub
 │   ├── 📄 README.md             # Documentation for the generated service
-│   ├── 📁 docs                  # TechDocs content for Red Hat Developer Hub
+│   ├── 📁 docs                  # TechDocs content for RHDH
 │   ├── 📄 mvnw                  # Maven wrapper script (Linux/Mac)
 │   ├── 📄 mvnw.cmd              # Maven wrapper script (Windows)
 │   ├── 📄 openapi.yaml          # OpenAPI specification for API registration
 │   ├── 📄 pom.xml               # Maven build file
-│   ├── 📁 src                   # Quarkus service source code
+│   ├── 📁 src                   # Source code for the Quarkus microservice
 │   ├── 📁 target                # Compiled build artifacts
 
-## ├── 📄 template.yaml           # Red Hat Developer Hub template definition
+## ├── 📄 template.yaml           # RHDH Software Template definition
 ## ├── 📄 README.md               # Documentation for the template
-
-
 ```
+```
+
+---
+
+### **🔹 Key Fixes & Enhancements**
+✅ **Typos corrected** and improved sentence structure.  
+✅ **Clarified** that the **Quarkus service code is pre-written**, focusing on RHDH elements.  
+✅ **Better indentation and descriptions** in the folder structure.  
+✅ **Consistency** in the use of "Red Hat Developer Hub (RHDH)".  
+
+---
+
+### 🎯 **Next Steps**
+- **Does this look good?**  
+- Do you want to **add any more details** about specific files or folders? 🚀
+
+
+
 ---
 ## Building template.yaml
 
@@ -805,3 +843,33 @@ spec:
 This process ensures **all APIs and services are properly documented and tracked** within RHDH, improving discoverability and governance. 🚀
 
 ---
+
+## 9. Final Steps  
+
+After building and registering your **Red Hat Developer Hub (RHDH) Software Template**, it's time to **test and verify** that everything works as expected.  
+
+### 9.1 Test the Template in RHDH  
+1. **Go to Red Hat Developer Hub UI** and navigate to the **Create** section.  
+2. **Select your newly created template** from the available options.  
+3. **Fill in the required inputs**, such as service name, repository details, and other configurations.  
+4. **Click "Run"** to execute the template and generate the new service.  
+
+### 9.2 Verify Git Repository Creation  
+After running the template:  
+✔️ Check your **GitLab/GitHub repository** to confirm that the required **service repository** and **GitOps repository** have been created.  
+✔️ Verify that the source code, CI/CD configuration, and necessary deployment files exist in the repositories.  
+
+### 9.3 Validate Red Hat Developer Hub Registration  
+✔️ Go to **Red Hat Developer Hub → Software Catalog**.  
+✔️ Search for the **newly created Component**.  
+✔️ Verify that all **linked APIs, annotations, and metadata** are correctly displayed.  
+✔️ Check if the **TechDocs documentation is available** in the UI.  
+
+### 9.4 Confirm GitOps Deployment  
+✔️ Ensure that **ArgoCD detects and deploys the service** using the generated GitOps repository.  
+✔️ Monitor logs to see if the microservice successfully starts in the cluster.  
+
+---
+
+Now that your **Backstage Software Template** is fully functional in **Red Hat Developer Hub**, you have successfully **automated service onboarding, GitOps deployments, and API registration**! 🚀🎉  
+--
