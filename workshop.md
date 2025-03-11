@@ -1,6 +1,6 @@
 # **🎯Learning Software templates using an example Quarkus Service**
 By the end of this session, participants will:
-- **Learn how to create a Red Hat Developer Hub Software Template from scratch for quarkus service.**
+- **Learn how to create a Red Hat Developer Hub Software Template from scratch for a Quarkus based application.**
 - **Understand the folder structure and role of each file.**
 - **Build `template.yaml` and `catalog-info.yaml`.**
 - **Register and import services in Red Hat Developer Hub (RHDH).**
@@ -27,6 +27,7 @@ Everything inside **Red Hat Developer Hub (RHDH)** is considered an **entity**.
 An **entity** represents a **real-world object** that is **registered and managed within the Software Catalog**.  
 
 ### **Common Entity Types in RHDH:**  
+
 - **A microservice** (e.g., a backend service running in production)  
 - **An API** (e.g., an OpenAPI-defined REST or GraphQL endpoint)  
 - **A CI/CD pipeline** (e.g., Tekton or GitHub Actions workflows)  
@@ -109,8 +110,9 @@ gh repo fork rh-product-demos/create-software-template --clone --remote
 ```sh
 cd create-software-template
 ```
----
-**At this point, you have a repository with an empty `template.yaml` and `catalog-info.yaml`, ready to build your Backstage Software Template.**
+
+* At this point, you have a repository with an empty `template.yaml` and `catalog-info.yaml`, ready to build your Backstage Software Template.
+
 ---
 
 #  🛠 Understanding the Folder Structure
@@ -154,9 +156,6 @@ Templates are stored in the Software Catalog under a kind Template. You can crea
 2. **Create a new file**: `template.yaml`
 3. **Start with a blank template** and **add basic comments**:
 
-
-
-
 ```yaml
 # Red Hat Developer Hub Software Template Definition
 apiVersion: scaffolder.backstage.io/v1beta3
@@ -174,6 +173,7 @@ spec:
   owner: rhdh
   type: service
 ```
+--
  ### Explanation
 ### **What is `template.yaml`?**
 - `template.yaml` is a **Red Hat Developer Hub Software Template** that automates **project scaffolding**.
