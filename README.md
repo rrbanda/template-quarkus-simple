@@ -57,8 +57,9 @@ By the end of this session, participants will:
 | **28-30 mins**  | **Step 4: Q&A + Customization**  | Let participants tweak the template. |
 
 ---
+# Building a Software Template
 
-# What to Know Before Writing Software Templates
+## What to Know Before Writing Software Templates
 
 Before writing any code, let's understand how **Red Hat Developer Hub (RHDH)** organizes software components using **entities**.
 
