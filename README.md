@@ -233,7 +233,7 @@ The Software Templates part of Backstage is a tool that can help you create Comp
 ### **Instructions**
 1. Open **VS Code** and navigate to your Red Hat Developer Hub Software template repository.
 2. **Create a new file**: `template.yaml`
-3. **Start with a blank template** and **add basic comments**:
+3. **Start with the following code snippet in a blank template** and **add basic comments**:
 
 ```yaml
 # Red Hat Developer Hub Software Template Definition
@@ -270,7 +270,7 @@ spec:
  **In short:** `template.yaml` tells Red Hat Developer Hub **what to create, how to create it, and what metadata to assign** in the Software Catalog.
 
 ---
-## **🛠 Step 3: Define User Input Parameters**
+## **🛠 Step 2.1: Define User Input Parameters**
  **Goal**: Collect user input for the service.
 
 ### **Instructions**
@@ -313,7 +313,7 @@ spec:
 **⏩ Test It in RHDH Template editor ** → Paste the template and check the form UI.
 
 
-## **🛠 Step 4: Fetch Quarkus Boilerplate Code**
+## **🛠 Step 2.2: Fetch Quarkus Boilerplate Code**
 **Goal**: Copy a **predefined Quarkus project**.
 
 ```yaml
@@ -343,7 +343,7 @@ spec:
 **In short:** `fetch:template` automates code scaffolding, and `${{ parameters.component_id }}` dynamically customizes the generated service.
 
 
-## **🛠 Step 5: Create a Git Repository and Push Code**
+## **🛠 Step 2.3: Create a Git Repository and Push Code**
 **Goal**: Automatically create a **GitLab repository**.
 
 ```yaml
@@ -376,7 +376,7 @@ spec:
 
 ---
 
-## **🛠 Step 6: Register the Service in Red Hat Developer Hub**
+## **🛠 Step 2.4: Register the Service in Red Hat Developer Hub**
 **Goal**: Add the service to the **Red Hat Developer Hub Software catalog**.
 
 ```yaml
@@ -391,15 +391,174 @@ spec:
 ### Explanation
 - Why is this necessary?
 
+Here is the **detailed write-up** covering the missing steps in `template.yaml` related to **GitOps deployment, publishing GitOps resources, and integrating ArgoCD**.
+
+---
+
+### **🛠 Step 2.5: Generate GitOps Deployment Resources**
+📌 **Goal**: Automate the generation of **deployment manifests** for GitOps-based deployment.
+
+### **Instructions**
+1️⃣ **Add the `fetch:template` step** to generate deployment resources.  
+2️⃣ **Ensure all necessary GitOps configurations** (e.g., ArgoCD, Kubernetes) are included.
+
+```yaml
+    - id: template-gitops-deployment
+      name: Generating Deployment Resources
+      action: fetch:template
+      input:
+        url: ./manifests
+        copyWithoutTemplating: []
+        values:
+          component_id: ${{ parameters.component_id }}
+          source_repository_gitops: https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}-gitops.git
+          source_repository: https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}.git
+          owner: ${{ user.entity.metadata.name }}
+          namespace: ${{ user.entity.metadata.name }}-${{ parameters.component_id }}-dev
+          image_registry: ${{ parameters.image_registry }}
+          image_host: ${{ parameters.image_host }}
+          image_organization: ${{ user.entity.metadata.name }}
+          image_password: ${{ secrets.image_password }}
+          image_name: ${{ parameters.component_id }}
+          image_tag: ${{ parameters.image_tag }}
+          gitops_namespace: rhdh-gitops
+          gitops_project: default
+          port: 8080
+          cluster_subdomain: apps.cluster-5nf6t.5nf6t.sandbox722.opentlc.com
+          repository_host: ${{ parameters.repo.host }}
+        targetPath: ./${{ user.entity.metadata.name }}-${{parameters.component_id}}-gitops
+```
+
+### **Explanation**
+✅ **Why use `fetch:template`?**  
+- This step **copies predefined GitOps deployment manifests** from the `manifests` folder.  
+- It **ensures that the correct Kubernetes resources (Deployments, Services, Routes, ConfigMaps, Secrets, etc.) are generated**.  
+- Using **templating expressions** (`${{ parameters.* }}`), it dynamically inserts **component-specific values** into the deployment files.
+
+✅ **What are these values used for?**  
+- **`component_id`**: The name of the microservice being deployed.  
+- **`source_repository_gitops` & `source_repository`**: The repositories where GitOps configurations and application code are stored.  
+- **`namespace`**: The Kubernetes namespace where the service will be deployed.  
+- **`image_registry`, `image_host`, `image_name`, `image_tag`**: Docker image information used by Kubernetes.  
+- **`gitops_namespace` & `gitops_project`**: Define where ArgoCD will manage GitOps-based deployments.  
+- **`repository_host`**: The SCM (GitLab/GitHub) host where the service is registered.  
+
+✅ **Why is this important?**  
+- Automates **infrastructure provisioning** by **creating deployment configurations**.
+- **Ensures consistency** across deployments by **storing everything as code in a Git repository** (GitOps approach).
+- Makes the deployment **repeatable and scalable** across environments.
+
+---
+
+### **🛠 Step 2.6: Publish GitOps Deployment Resources**
+📌 **Goal**: Push the generated deployment resources to a **Git repository** that ArgoCD will track.
+
+### **Instructions**
+1️⃣ **Add the `publish:gitlab` step** to **push GitOps configurations** to a separate repository.
+
+```yaml
+    - id: publish-gitops
+      name: Publishing to Resource Repository
+      action: publish:gitlab
+      input:
+        repoUrl: "${{ parameters.repo.host }}?owner=${{ user.entity.metadata.name }}&repo=${{parameters.component_id}}-gitops"
+        repoVisibility: public
+        defaultBranch: main
+        title: gitops resources for ${{ parameters.component_id }}
+        description: gitops resources for ${{ parameters.component_id }}
+        sourcePath: ./${{ user.entity.metadata.name }}-${{parameters.component_id}}-gitops
+```
+
+### **Explanation**
+✅ **Why use `publish:gitlab`?**  
+- **Creates a new Git repository** (`component_id-gitops`) to store Kubernetes deployment files.  
+- Ensures **GitOps tools (e.g., ArgoCD) can track infrastructure changes** by watching this repo.  
+
+✅ **What does `sourcePath` do?**  
+- Specifies **which folder** (`component_id-gitops`) to push to GitLab.  
+- Ensures that only **GitOps-related deployment files** are committed and pushed, without unnecessary files.  
+
+✅ **Why do we need a separate GitOps repo?**  
+- In GitOps workflows, **application source code and deployment configurations should be managed separately**.  
+- This ensures that **any infrastructure changes are tracked independently** and **trigger automated deployments via ArgoCD**.
+
+---
+
+### **🛠 Step 2.7: Create ArgoCD Resources**
+📌 **Goal**: Automatically configure **ArgoCD** to deploy and manage the microservice.
+
+### **Instructions**
+1️⃣ **Add the `argocd:create-resources` step** to integrate the service with ArgoCD.
+
+```yaml
+    - id: create-argocd-resources
+      name: Create ArgoCD Resources
+      action: argocd:create-resources
+      input:
+        appName: ${{ user.entity.metadata.name }}-${{ parameters.component_id }}-bootstrap
+        argoInstance: main
+        namespace: rhdh-gitops
+        repoUrl: https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{ parameters.component_id }}-gitops.git
+        path: 'argocd/'
+```
+
+### **Explanation**
+✅ **What does this step do?**  
+- Configures **ArgoCD to monitor the GitOps repo** (`component_id-gitops`).  
+- Creates an **ArgoCD Application** (`component_id-bootstrap`) that deploys the service.  
+- Watches the GitOps repository and **automatically applies changes** when new commits are made.
+
+✅ **Key Inputs**  
+- **`appName`** → The name of the ArgoCD application (`component_id-bootstrap`).  
+- **`argoInstance`** → Specifies the ArgoCD instance (`main`).  
+- **`namespace`** → The Kubernetes namespace where ArgoCD manages the service (`rhdh-gitops`).  
+- **`repoUrl`** → The **GitOps repository** that ArgoCD will track.  
+- **`path`** → The **directory inside the repo** where ArgoCD looks for Kubernetes manifests (`argocd/`).  
+
+✅ **Why is this important?**  
+- **Enables Continuous Deployment** → Every Git push triggers an automatic deployment via ArgoCD.  
+- **Ensures deployment consistency** → Developers don’t need to manually apply Kubernetes resources.  
+- **Allows rollback & history tracking** → If a bad deployment happens, ArgoCD can roll back to the last working state.
+
+---
+
+### **🛠 Step 2.8: Output Links for Easy Access**
+📌 **Goal**: Provide direct **clickable links** to the generated Git repositories and Backstage Component.
+
+### **Instructions**
+1️⃣ **Define output links at the end of `template.yaml`**.
+
+```yaml
+  output:
+    links:
+      - title: Source Code Repository
+        url: ${{ steps.publish.output.remoteUrl }}
+      - title: Open Component in catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
+```
+
+### **Explanation**
+✅ **Why include output links?**  
+- **Gives developers direct access** to the newly created Git repositories.  
+- **Ensures services can be found in Red Hat Developer Hub** by linking to their catalog entry.  
+
+✅ **What does `entityRef` do?**  
+- The `entityRef` ensures that after the template runs, users can **click a link to view the registered Component in the RHDH catalog**.  
+- This helps **new developers quickly find the service** and access relevant information.
+
+---
+
+
 **⏩ Test It in Red Hat Developer Hub** → The new service should appear in the catalog.
 
 
-## **🛠 Step 6: Build `catalog-info.yaml` Incrementally**
+## **🛠 Step 3: Build `catalog-info.yaml` Incrementally**
 
 **Goal**: Register the service in Red Hat Developer Hub by **building `catalog-info.yaml` step by step**.
 
 
-### **1️⃣ Start with a Blank `catalog-info.yaml`**
+### ** Start with a Blank `catalog-info.yaml`**
 
 **Why?** Every service created by Red Hat Developer Hub **must be registered** in the catalog.
 
@@ -431,7 +590,7 @@ spec:
 
 ----------
 
-### **2️⃣ Add Metadata (Description & Tags)**
+### **3.1 Add Metadata (Description & Tags)**
 
 **Why?** Helps users **identify** and **search** for the service.
 
@@ -458,7 +617,7 @@ metadata:
 
 ----------
 
-### **3️⃣ Add Annotations for GitOps and CI/CD**
+### **3.2 Add Annotations for GitOps and CI/CD**
 
 **Why?** These annotations **link Red Hat Developer Hub to GitLab, ArgoCD, and Kubernetes**.
 
@@ -485,7 +644,7 @@ metadata:
 
 ----------
 
-### **4️⃣ Add Developer Links for OpenShift Dev Spaces**
+### **3.3 Add Developer Links for OpenShift Dev Spaces**
 
 **Why?** Allows developers to **open the service directly in VS Code or JetBrains**.
 
@@ -508,7 +667,7 @@ metadata:
 
 ----------
 
-### **5️⃣ Register the API in Red Hat Developer Hub**
+### **4 Register the API in Red Hat Developer Hub**
 
 📌 **Why?** If the service **exposes an API**, we need to **document it** in Red Hat Developer Hub.
 
@@ -556,8 +715,3 @@ spec:
 This process ensures **all APIs and services are properly documented and tracked** within RHDH, improving discoverability and governance. 🚀
 
 ---
-
-## **🎯 Final Steps**
-1️⃣ **Review the full `template.yaml` and `catalog-info.yaml`.**  
-2️⃣ **Run a final test in template editor UI for Red Hat Developer Hub .**  
-3️⃣ **Open Q&A and let participants modify the template.**  
