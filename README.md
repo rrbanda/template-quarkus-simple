@@ -179,7 +179,7 @@ Entities are **imported and synchronized** in **three ways**:
 ## **Understanding the Software Template for Quarkus**
 Before we start building the software template step by step, let’s first understand the **key elements of our setup**.
 
-### **📌 What Are We Working With?**
+### What Are We Working With?
 For this workshop, we are using an **existing repository** that follows a **standard folder structure** for a **Red Hat Developer Hub (RHDH) software template**.
 
 ✔️ The repository contains **pre-existing code** for a **Quarkus microservice**.  
@@ -324,14 +324,14 @@ Here, we assume that the **Quarkus service code and manifests are already writte
 
 # Building `template.yaml`
 
-## 🛠 A Quick Overview of `template.yaml`
+## A Quick Overview of `template.yaml`
 The **Software Templates** feature in **Red Hat Developer Hub (RHDH)** helps you **scaffold and automate the creation of services**. A template defines:
 - **How a new service is created**
 - **What input parameters it requires**
 - **Where it should be stored (GitHub, GitLab, etc.)**
 - **How it should be deployed using GitOps (ArgoCD, Kubernetes, etc.)**
 
-### **Why Use `template.yaml`?**
+### Why Use `template.yaml`?
 ✔️ Automates service creation  
 ✔️ Ensures consistency across all microservices  
 ✔️ Standardizes deployment and registration  
@@ -339,7 +339,7 @@ The **Software Templates** feature in **Red Hat Developer Hub (RHDH)** helps you
 
 ---
 
-## 🛠 Step 2: Start with a Blank `template.yaml`
+## Step 2: Start with a Blank `template.yaml`
 ### **Instructions**
 1. Open **VS Code** and navigate to your **Red Hat Developer Hub Software Template** repository.
 2. **Create a new file**: `template.yaml`
@@ -363,7 +363,7 @@ spec:
   type: service
 ```
 
-### **Explanation**
+### Explanation
 - **`apiVersion`** → Defines the API version used by Red Hat Developer Hub  
 - **`kind`** → Defines the entity as a `Template`  
 - **`metadata`** → Includes a **name, title, description, and tags** to make it searchable  
@@ -373,7 +373,7 @@ spec:
 
 ---
 
-## 🛠 Step 2.1: Define User Input Parameters
+## Step 2.1: Define User Input Parameters
 Templates allow user input to customize each new service. These **parameters** will be collected from the user when running the template.
 
 ### **Instructions**
@@ -415,7 +415,7 @@ parameters:
         default: A cool Quarkus app
 ```
 
-### **Explanation**
+### Explanation
 - **`parameters`** → Defines user inputs required to generate the service  
 - **`component_id`** → Unique service name (with validation via `EntityNamePicker`)  
 - **`group_id` & `artifact_id`** → Used for **Maven build configuration**  
@@ -424,10 +424,10 @@ parameters:
 
 ---
 
-## 🛠 Step 2.2: Fetch Quarkus Boilerplate Code
+## Step 2.2: Fetch Quarkus Boilerplate Code
 Once the user provides input, the template should **fetch a predefined Quarkus project skeleton**.
 
-### **Instructions**
+### Instructions
 1. **Add the `fetch:template` step**:
 
 ```yaml
@@ -443,14 +443,14 @@ Once the user provides input, the template should **fetch a predefined Quarkus p
         targetPath: ./${{ user.entity.metadata.name }}-${{ parameters.component_id }}
 ```
 
-### **Explanation**
+### Explanation
 - **`fetch:template`** → Copies the Quarkus boilerplate into the new service directory  
 - **`${{ parameters.component_id }}`** → Injects user-provided values dynamically  
 - **Ensures consistency** across all new services  
 
 ---
 
-## 🛠 Step 2.3: Create a Git Repository and Push Code
+## Step 2.3: Create a Git Repository and Push Code
 ### **Instructions**
 1. **Add the `publish:gitlab` step**:
 
@@ -465,16 +465,16 @@ Once the user provides input, the template should **fetch a predefined Quarkus p
         sourcePath: ./${{ user.entity.metadata.name }}-${{parameters.component_id}}
 ```
 
-### **Explanation**
+### Explanation
 - **`publish:gitlab`** → Automates repository creation in GitLab  
 - **Ensures the project is version-controlled and stored correctly**  
 
 ---
 
-## 🛠 Step 2.4: Register the Service in Red Hat Developer Hub
+## Step 2.4: Register the Service in Red Hat Developer Hub
 Once the repository is created, the service **must be registered in the RHDH Software Catalog**.
 
-### **Instructions**
+### Instructions
 1. **Add the `catalog:register` step**:
 
 ```yaml
@@ -486,16 +486,16 @@ Once the repository is created, the service **must be registered in the RHDH Sof
         catalogInfoPath: "/catalog-info.yaml"
 ```
 
-### **Explanation**
+### Explanation
 - **Registers the generated service in RHDH**  
 - **Ensures the service appears in the Software Catalog**  
 
 ---
 
-## 🛠 Step 2.5: Deploy with GitOps & ArgoCD
+## Step 2.5: Deploy with GitOps & ArgoCD
 Once the service is created, we need to **deploy it using GitOps**.
 
-### **Instructions**
+### Instructions**
 1. **Add the `fetch:template` step to generate deployment resources**:
 
 ```yaml
@@ -510,14 +510,14 @@ Once the service is created, we need to **deploy it using GitOps**.
         targetPath: ./${{ user.entity.metadata.name }}-${{parameters.component_id}}-gitops
 ```
 
-### **Explanation**
+### Explanation
 - **Generates Kubernetes manifests**  
 - **Ensures the service is deployed via GitOps in ArgoCD**  
 
 ---
 
-## 🛠 Step 2.6: Publish GitOps Deployment Resources
-### **Instructions**
+## Step 2.6: Publish GitOps Deployment Resources
+### Instructions
 1. **Add the `publish:gitlab` step**:
 
 ```yaml
@@ -530,14 +530,14 @@ Once the service is created, we need to **deploy it using GitOps**.
         sourcePath: ./${{ user.entity.metadata.name }}-${{parameters.component_id}}-gitops
 ```
 
-### **Explanation**
+### Explanation
 - **Stores GitOps configurations in a dedicated repo**  
 - **Ensures ArgoCD can monitor and deploy changes**  
 
 ---
 
-## 🛠 Step 2.7: Configure ArgoCD for Automated Deployment
-### **Instructions**
+## Step 2.7: Configure ArgoCD for Automated Deployment
+### Instructions
 1. **Add the `argocd:create-resources` step**:
 
 ```yaml
@@ -557,7 +557,7 @@ Once the service is created, we need to **deploy it using GitOps**.
 
 ---
 
-## 🛠 Step 2.8: Provide Output Links for Easy Access
+## Step 2.8: Provide Output Links for Easy Access
 ```yaml
   output:
     links:
@@ -567,12 +567,10 @@ Once the service is created, we need to **deploy it using GitOps**.
         icon: catalog
         entityRef: ${{ steps.register.output.entityRef }}
 ```
-
-✅ **Your template is now complete!**
+ 
+ **Your template is now complete!**
 
 ---
-
-This is **fully structured, formatted, and optimized** for easy copy-pasting into your `.md` file! 🚀
 
 # Building `catalog-info.yaml`
 
@@ -610,7 +608,7 @@ spec:
 
 ---
 
-## 6.2 Add Metadata (Description & Tags)
+## Add Metadata (Description & Tags)
 
 ### **Why is this important?**  
 Adding **metadata** allows users to **identify and search** for the service inside **RHDH**.
@@ -628,7 +626,7 @@ metadata:
     - quarkus
 ```
 
-### **Explanation**
+### Explanation
 - **What does `description` do?**  
   - Provides a **short summary** of the service to help developers understand its purpose.  
 - **Why add `tags`?**  
@@ -636,7 +634,7 @@ metadata:
 
 ---
 
-## 6.3 Deploying with GitOps & ArgoCD  
+## Deploying with GitOps & ArgoCD  
 
 To **enable automation with GitOps**, we must add **annotations** that link **RHDH** to GitLab, ArgoCD, and Kubernetes.
 
@@ -662,7 +660,7 @@ To **enable automation with GitOps**, we must add **annotations** that link **RH
 
 ---
 
-## 6.4 Add Developer Links for OpenShift Dev Spaces
+## Add Developer Links for OpenShift Dev Spaces
 
 To **enhance the developer experience**, we can provide **direct links** for **opening the service in VS Code or JetBrains**.
 
@@ -678,13 +676,13 @@ To **enhance the developer experience**, we can provide **direct links** for **o
       icon: web
 ```
 
-### **Explanation**
+### Explanation
 - **Why add these links?**  
   - Developers can click these **to open the service in OpenShift Dev Spaces** for live coding.
 
 ---
 
-## 6.5 Register the API in Red Hat Developer Hub
+## Register the API in Red Hat Developer Hub
 
 If the service **exposes an API**, we must document it in **RHDH**.
 
@@ -707,7 +705,7 @@ spec:
     $text: ./openapi.yaml
 ```
 
-### **Explanation**
+### Explanation
 
 #### **What is `kind: API`?**  
 - This tells **RHDH** that the entity being registered is an **API** rather than a microservice (`kind: Component`).  
@@ -723,25 +721,25 @@ spec:
 
 ---
 
-### **Final Thoughts on `catalog-info.yaml`**
+### Final Thoughts on `catalog-info.yaml`
 ✔️ `catalog-info.yaml` ensures **services and APIs** are registered correctly in **RHDH**.  
 ✔️ It includes **metadata, annotations, GitOps configuration, and API registration**.  
 ✔️ **With this file in place**, developers can **easily discover, use, and manage services** in Red Hat Developer Hub.  
 
-✅ Now that **`catalog-info.yaml` is ready**, let’s move to the next steps! 🚀  
+Now that **`catalog-info.yaml` is ready**, let’s move to the next steps! 🚀  
 
 ---
 ## Importing Template in Red Hat Developer Hub  
 
 Once you have built your **Software Template** and defined `catalog-info.yaml`, the next step is to **register it in Red Hat Developer Hub (RHDH)** so that developers can use it to generate new services.  
 
-### 8.1 How to Register a Template in RHDH  
+### How to Register a Template in RHDH  
 1. **Navigate to "Register Component"** in the **Red Hat Developer Hub UI**.  
 2. **Enter the Git repository URL** where the `catalog-info.yaml` file is stored.  
 3. Click **Analyze → Import** to scan and register the template in the catalog.  
 4. Once imported, navigate to **Create → Choose Your Template** to verify that it appears in the list of available templates.  
 
-### 8.2 How to Register an API in RHDH  
+### How to Register an API in RHDH  
 If your **template includes an API**, you need to ensure that it is also registered in **RHDH** for proper discoverability and documentation.  
 
 1. **Navigate to "Register Component"** in RHDH.  
@@ -761,24 +759,24 @@ Now that the **template is available**, let’s move on to **final validation st
 
 After building and registering your **Red Hat Developer Hub (RHDH) Software Template**, it's time to **test and verify** that everything works as expected.  
 
-### 9.1 Test the Template in RHDH  
+### Test the Template in RHDH  
 1. **Go to Red Hat Developer Hub UI** and navigate to the **Create** section.  
 2. **Select your newly created template** from the available options.  
 3. **Fill in the required inputs**, such as service name, repository details, and other configurations.  
 4. **Click "Run"** to execute the template and generate the new service.  
 
-### 9.2 Verify Git Repository Creation  
+### Verify Git Repository Creation  
 After running the template:  
 ✔️ Check your **GitLab/GitHub repository** to confirm that the required **service repository** and **GitOps repository** have been created.  
 ✔️ Verify that the source code, CI/CD configuration, and necessary deployment files exist in the repositories.  
 
-### 9.3 Validate Red Hat Developer Hub Registration  
+### Validate Red Hat Developer Hub Registration  
 ✔️ Go to **Red Hat Developer Hub → Software Catalog**.  
 ✔️ Search for the **newly created Component**.  
 ✔️ Verify that all **linked APIs, annotations, and metadata** are correctly displayed.  
 ✔️ Check if the **TechDocs documentation is available** in the UI.  
 
-### 9.4 Confirm GitOps Deployment  
+### Confirm GitOps Deployment  
 ✔️ Ensure that **ArgoCD detects and deploys the service** using the generated GitOps repository.  
 ✔️ Monitor logs to see if the microservice successfully starts in the cluster.  
 
