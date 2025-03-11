@@ -459,12 +459,10 @@ Here is the **detailed write-up** covering the missing steps in `template.yaml` 
 
 ---
 
-### **🛠 Step 2.5: Generate GitOps Deployment Resources**
-📌 **Goal**: Automate the generation of **deployment manifests** for GitOps-based deployment.
+### 🛠 Step 2.5: Generate GitOps Deployment Resources to Automate the generation of **deployment manifests** for GitOps-based deployment.
 
-### **Instructions**
-**Add the `fetch:template` step** to generate deployment resources.  
-**Ensure all necessary GitOps configurations** (e.g., ArgoCD, Kubernetes) are included.
+  * Add the `fetch:template` step** to generate deployment resources.
+  * Ensure all necessary GitOps configurations** (e.g., ArgoCD, Kubernetes) are included.
 
 ```yaml
     - id: template-gitops-deployment
