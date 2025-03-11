@@ -10,12 +10,13 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
 
-# Enable search and sidebar navigation
+# Enable sidebar and search
 search_enabled: true
 back_to_top: true
 back_to_top_text: "Back to Top"
 
-# Sidebar navigation structure (pointing to sections within README.md)
+# Sidebar navigation structure
+nav_order: 1
 nav:
   - title: "Home"
     url: "/"
