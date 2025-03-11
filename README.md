@@ -573,7 +573,7 @@ In this section, we will **incrementally build `catalog-info.yaml`** to properly
 
 ## Start with a Blank `catalog-info.yaml`
 
-### **Why is this needed?**  
+### Why is this needed?
 Every service created in **RHDH** must be **registered in the catalog** so that it can be tracked and managed.
 
 ### **Instructions**  
@@ -591,7 +591,7 @@ spec:
   owner: ${{values.owner | dump}}
 ```
 
-### **Explanation**
+### Explanation
 - **What is `kind: Component`?**  
   - This tells **RHDH** that the entity represents a **microservice**.  
 - **What is `lifecycle: development`?**  
@@ -603,7 +603,7 @@ spec:
 
 ## Add Metadata (Description & Tags)
 
-### **Why is this important?**  
+### Why is this important?
 Adding **metadata** allows users to **identify and search** for the service inside **RHDH**.
 
 ### **Update `metadata` section**:
@@ -631,7 +631,7 @@ metadata:
 
 To **enable automation with GitOps**, we must add **annotations** that link **RHDH** to GitLab, ArgoCD, and Kubernetes.
 
-### **Update `annotations` section**:
+### Update `annotations` section
 
 ```yaml
   annotations:
@@ -643,7 +643,7 @@ To **enable automation with GitOps**, we must add **annotations** that link **RH
     gitlab.com/project-slug: ${{values.destination}}
 ```
 
-### **Explanation**
+### Explanation
 - **What is `argocd/app-selector`?**  
   - **Links the service to ArgoCD**, allowing **RHDH** to track **GitOps deployments**.  
 - **What is `backstage.io/source-location`?**  
@@ -679,7 +679,7 @@ To **enhance the developer experience**, we can provide **direct links** for **o
 
 If the service **exposes an API**, we must document it in **RHDH**.
 
-### **Add API registration to `catalog-info.yaml`**:
+### Add API registration to `catalog-info.yaml`
 
 ```yaml
 ---
@@ -700,15 +700,15 @@ spec:
 
 ### Explanation
 
-#### **What is `kind: API`?**  
+#### What is `kind: API`?**  
 - This tells **RHDH** that the entity being registered is an **API** rather than a microservice (`kind: Component`).  
 - This ensures that **APIs are properly documented, reusable, and discoverable**.  
 
-#### **What is `definition: $text: ./openapi.yaml`?**  
+#### What is `definition: $text: ./openapi.yaml`?**  
 - This links the API to an **OpenAPI spec file** (`openapi.yaml`).  
 - Enables **automatic API documentation rendering** inside **RHDH**.  
 
-#### **Why does RHDH need this step?**  
+#### Why does RHDH need this step?**  
 - Ensures that **all APIs and services are properly documented**.  
 - Standardizes API **versioning, governance, and discovery** in the **Software Catalog**.  
 
