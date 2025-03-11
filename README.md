@@ -146,10 +146,10 @@ Entities are **imported and synchronized** in **three ways**:
 
 ## **Prerequisites**
 Before starting, ensure you have:
-- **VS Code or any other IDE .
-- **A running Red Hat Developer Hub instance**.
-- **An accessible GitLab (or GitHub) Org **.
-- **ArgoCD configured** if testing deployments.
+- VS Code or any other IDE .
+- A running Red Hat Developer Hub instance**.
+- An accessible GitLab (or GitHub) Org **.
+- ArgoCD configured** if testing deployments.
 
 ### 🛠 Preparing Your Repository for Backstage Software Templates
 
@@ -721,7 +721,7 @@ metadata:
 
 ### **4 Register the API in Red Hat Developer Hub**
 
-📌 **Why?** If the service **exposes an API**, we need to **document it** in Red Hat Developer Hub.
+**Why?** If the service **exposes an API**, we need to **document it** in Red Hat Developer Hub.
 
 #### **Add API registration to `catalog-info.yaml`**:
 
