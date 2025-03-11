@@ -1,4 +1,4 @@
-# Create Red Hat Developer Hub Software Templates for Quarkus based application.
+# Red Hat Developer Hub - Software Templates for Quarkus
 
 ## Table of Contents
 1. [Workshop Overview](#workshop-overview)
