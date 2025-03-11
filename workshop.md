@@ -19,48 +19,126 @@ By the end of this session, participants will:
 
 ---
 
-### 📖 Understanding Backstage Entities Before We Start
-
-#### Before writing any code, let's understand how **Red Hat Developer Hub** organizes software components using **entities**.
-
-Everything inside **Red Hat Developer Hub (RHDH)** is considered an **entity**.  
-An **entity** represents a **real-world object** that is **registered and managed within the Software Catalog**.  
-
-#### **Common Entity Types in RHDH:**  
-
-- **A microservice** (e.g., a backend service running in production)  
-- **An API** (e.g., an OpenAPI-defined REST or GraphQL endpoint)  
-- **A CI/CD pipeline** (e.g., Tekton or GitHub Actions workflows)  
-- **A team or user group** (e.g., an organizational unit managing services)  
-
-Entities in **Red Hat Developer Hub** are defined using **YAML files**, specifically `catalog-info.yaml`, which RHDH reads to organize components in the **Software Catalog**.  
+## 📖 Before writing any code, let's understand how **Red Hat Developer Hub (RHDH)** organizes software components using **entities**.
 
 ---
 
-##### **Key Entities We Will Work With**  
-In this demo, we will use **three core entities**:  
+### 🔍 What is the Software Catalog?  
+The **Software Catalog** in **Red Hat Developer Hub (RHDH)** is a **centralized asset tracker** that stores and manages all the software-related entities in your organization.
 
+It helps teams:
+✔️ **Track ownership** of services and APIs.  
+✔️ **Discover and document** microservices and dependencies.  
+✔️ **Ensure consistency** in software and infrastructure.  
+✔️ **Automate software lifecycle management** with GitOps.
+
+---
+
+### 🏗️ Key Concepts: What is an Entity?  
+An **entity** is any **software-related object** that needs to be tracked, documented, and managed inside RHDH.
+
+Entities are typically **stored in YAML files** (e.g., `catalog-info.yaml`) and are **registered** in the **Software Catalog**. These can be:
+
+### **Entity Types in RHDH**  
 | **Entity Type** | **Kind**            | **Purpose**  |  
 |----------------|-----------------|----------------------|  
-| **Template**   | `kind: Template`   | Defines how **new services are created** using a Red Hat Developer Hub form.  |  
-| **Component**  | `kind: Component`  | Represents a **runnable microservice** registered in the catalog.  |  
-| **API**        | `kind: API`        | Describes an **exposed API** that other services can use.  |  
+| **Component**  | `kind: Component`  | Represents a **microservice, website, or library** running in production. |  
+| **API**        | `kind: API`        | Describes an **exposed API** that other services can use. |  
+| **Resource**   | `kind: Resource`   | A **database, S3 bucket, or cloud service** used by Components. |  
+| **System**     | `kind: System`     | A **collection of Components** that work together as a product. |  
+| **Domain**     | `kind: Domain`     | A **higher-level grouping** of multiple Systems. |  
+| **Template**   | `kind: Template`   | Defines how **new services are created** using Red Hat Developer Hub. |  
+| **User**       | `kind: User`       | Represents an **individual developer or team member**. |  
+| **Group**      | `kind: Group`      | Represents a **team or organization** within RHDH. |  
+
+**In this demo , we will focus on three key entities:**
+
+**Templates** → Automate service creation.  
+**Components** → Represent microservices in production.  
+**APIs** → Define interfaces that services expose.  
 
 ---
 
-##### **How Do These Work Together?**  
-- A **Template** (`kind: Template`) helps generate a **Component** (`kind: Component`).  
-- A **Component** represents a **real microservice** deployed in production.  
-- If a **Component exposes an API**, it is **linked to an API entity** (`kind: API`) in the catalog.  
+### **How Backstage Templates Automate This Process**  
+With a **Backstage Software Template**, **this entire setup is automated**:  
+
+**A Template (`kind: Template`) asks for user input** (e.g., service name, repo details).  
+**It generates a Component (`kind: Component`)** inside Red Hat Developer Hub.  
+**If an API is included, it is also registered** as an `API` entity.  
+**CI/CD, GitOps, and Kubernetes setup are automated.**  
 
 ---
 
-##### **Example Workflow:**  
-* A **developer fills out a form** in **Red Hat Developer Hub** → The **Template** creates a **new Git repository** with Quarkus boilerplate.
-* The service is **registered as a `Component` in the catalog** and linked to a **Kubernetes deployment**.
-* If the service **exposes an API**, it is also **registered as an `API` entity** in RHDH.  
+#### Example: How Our Template Works  
 
-**Now that we understand these concepts, let’s build our Red Hat Developer Hub Software Template step by step!**  
+* A **developer fills out a form** in **Red Hat Developer Hub**.
+* The **Template** generates a **new Git repository** with Quarkus boilerplate.
+* The **service is automatically registered** as a **Component** in the catalog.
+* If the service **exposes an API**, it is **linked to an API entity**.
+* The service is **deployed automatically using GitOps** and ArgoCD.  
+
+---
+
+#### 📜 Example `catalog-info.yaml`  
+
+When an entity is registered in RHDH, it is defined in a `catalog-info.yaml` file.
+
+This is an example of how a **Component** is registered:
+
+```
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: my-amazing-microservice
+  description: A microservice written to do amazing things
+
+  # Annotations are typically used to provide extra context to plugins, e.g TechDocs
+  annotations:
+    # Tells the TechDocs plugin where to find documentation sources. In this case
+    # "dir:." means in the root of the repo containing this catalog-info.yaml
+    backstage.io/techdocs-ref: dir:.
+
+  # Arbitrary list of strings used to filter Entities in the Software Catalog
+  tags:
+    - docs
+
+spec:
+  type: Documentation
+  lifecycle: development
+
+  # Reference to the User or Group Entity that is responsible for this Component
+  owner: "pe1"
+```
+
+---
+
+#### 🔄 How Are Entities Added to the Software Catalog?  
+
+Entities are **imported and synchronized** in **three ways**:
+
+**Automatically using plugins**  
+   - Backstage can scan **GitHub, GitLab, or Kubernetes** to discover entities.  
+   
+**Manually registering entities via the UI**  
+   - Developers can **add a service manually** by providing a repository link.
+
+**Declaring entities in the Backstage configuration**  
+   - Administrators can define **static entities** inside **Backstage configuration files**.
+
+#### **How Does Red Hat Developer Hub Keep Entities Up to Date?**  
+- RHDH can be configured to **automatically syncs entity information** on a regular schedule.  
+- If an **entity is stored in Git**, it follows the convention of using a `catalog-info.yaml` file.  
+
+---
+
+## Summary  
+
+✔️ The **Software Catalog** is the **source of truth** for all software in your organization.  
+✔️ **Entities** such as **Components, APIs, Resources, and Templates** are registered inside the Software Catalog.  
+✔️ **`catalog-info.yaml`** is used to **define and register services in Red Hat Developer Hub**.  
+✔️ Our **Backstage Template** will **automate service onboarding, CI/CD, and deployment**.  
+
+  * Now let’s start building our Backstage Software Template!**  
 
 ---
 # **🛠 Step 1: Setting Up the Demo**
