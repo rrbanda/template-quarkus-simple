@@ -277,25 +277,88 @@ spec:
 ### **Instructions**
 1. **Add the parameters section**:
 
-```yaml
-  parameters:
-    - title: Provide Information for Application
-      required:
-        - component_id
-        - java_package_name
-      properties:
-        component_id:
-          title: Name
-          type: string
-          description: Unique name of the component
-          default: my-quarkus-app
-          ui:field: EntityNamePicker
-          maxLength: 18
-        java_package_name:
-          title: Java Package Name
-          type: string
-          description: Package for Java classes
-          default: com.redhat.rhdh
+```
+parameters:
+  - title: Provide Information for Application
+    required:
+      - component_id
+      - java_package_name
+    properties:
+      component_id:
+        title: Name
+        type: string
+        description: Unique name of the component
+        default: my-quarkus-app
+        ui:field: EntityNamePicker
+        maxLength: 18
+      group_id:
+        title: Group Id
+        type: string
+        default: com.redhat.rhdh
+        description: Maven Group Id
+      artifact_id:
+        title: Artifact Id
+        type: string
+        default: quarkus-app
+        description: Maven Artifact Id
+      java_package_name:
+        title: Java Package Name
+        default: com.redhat.rhdh
+        type: string
+        description: Name for the java package. eg (com.redhat.blah)
+      description:
+        title: Description
+        type: string
+        description: Help others understand what this website is for.
+        default: A cool quarkus app
+  - title: Provide Image Registry Information
+    required:
+      - image_registry
+    properties:
+      image_registry:
+        title: Image Registry
+        type: string
+        enum:
+          - Openshift
+          - Quay
+    dependencies:
+      image_registry:
+        oneOf:
+          - properties:
+              image_registry:
+                enum:
+                  - Openshift
+              image_host:
+                title: Image Host
+                type: string
+                description: Host for storing image
+                default: image-registry.openshift-image-registry.svc:5000
+              image_tag:
+                title: Image Tag
+                default: latest
+                type: string
+                description: Build Image tag
+          - properties:
+              image_registry:
+                enum:
+                  - Quay
+              image_host:
+                title: Image Host
+                type: string
+                description: Host for storing image
+                default: quay.apps.cluster-5nf6t.5nf6t.sandbox722.opentlc.com
+              image_password:
+                title: Password
+                type: string
+                description: Your Quay password
+                ui:field: Secret
+              image_tag:
+                title: Image Tag
+                default: latest
+                type: string
+                description: Build Image tag
+
+
 ```
 
 ### Explanation
