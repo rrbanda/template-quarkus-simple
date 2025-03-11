@@ -11,33 +11,28 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
 
-# ✅ Completely Disable Sidebar Navigation
-# Remove auto-generated navigation in Just the Docs
+# ✅ Force Disable Sidebar by setting an Empty Navigation List
+nav: []
+
+# ✅ Completely Remove Sidebar and TOC
 just_the_docs:
+  enable_nav: false  # Completely disable auto-generated nav
+  search_enabled: false  # Remove search
+  back_to_top: false  # Remove "Back to Top" button
   collections:
     docs:
-      nav_exclude: true
-  nav_exclude: true  # ✅ This ensures no sidebar navigation appears
-  search_enabled: false  # ✅ Disable search (optional)
-  back_to_top: false  # ✅ Remove "Back to Top" button
+      nav_exclude: true  # Ensure docs collection is hidden
 
-# ✅ Ensure Just the Docs does not auto-generate navigation
-collections:
-  docs:
-    output: true
-    permalink: /:path/
-    nav_exclude: true  # ✅ Exclude this collection from sidebar
-
-# ✅ Apply Default Settings to Hide Sidebar & TOC
+# ✅ Hide Page Navigation & Sidebar
 defaults:
   - scope:
       path: ""
     values:
       layout: "default"
-      has_toc: false  # ✅ Disables Table of Contents (TOC) auto-generation
-      nav_exclude: true  # ✅ Ensures no pages appear in the sidebar
+      has_toc: false  # Disable TOC inside pages
+      nav_exclude: true  # Ensure all pages are excluded from navigation
 
-# ✅ Exclude unnecessary files from Jekyll processing
+# ✅ Exclude unnecessary files
 exclude:
   - Gemfile
   - Gemfile.lock
