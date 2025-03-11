@@ -17,7 +17,6 @@
 9. [Final Steps](#final-steps)
 
 
-
 ## Workshop Overview  
 This workshop will guide you through creating **Backstage software templates** using **Red Hat Developer Hub (RHDH)**...
 
@@ -53,7 +52,7 @@ Before writing any code, let's understand how **Red Hat Developer Hub (RHDH)** o
 
 ---
 
-## **📌 Understanding Software Catalog**
+## Understanding Software Catalog
 
 The **Software Catalog** in **Red Hat Developer Hub (RHDH)** is a **centralized asset tracker** that stores and manages all software-related entities in your organization.
 
@@ -66,7 +65,7 @@ It helps teams:
 
 ---
 
-## **🏗️ Entities in Red Hat Developer Hub**
+## Entities in Red Hat Developer Hub
 
 An **entity** is any **software-related object** that needs to be tracked, documented, and managed inside RHDH.
 
@@ -87,7 +86,7 @@ Entities are typically **stored in YAML files** (e.g., `catalog-info.yaml`) and 
 
 ---
 
-### **🔹 Key Focus Areas in This Workshop**  
+### Key Focus Areas in This Workshop
 
 In this workshop, we will focus on **three key entities**:
 
@@ -97,7 +96,7 @@ In this workshop, we will focus on **three key entities**:
 
 ---
 
-## **🚀 How Backstage Templates Automate This Process**
+## How Backstage Templates Automate This Process
 
 With a **Backstage Software Template**, **this entire setup is automated**:
 
@@ -106,7 +105,7 @@ With a **Backstage Software Template**, **this entire setup is automated**:
 3️⃣ **If an API is included, it is also registered** as an `API` entity.  
 4️⃣ **CI/CD, GitOps, and Kubernetes setup are automated**.
 
-### **Example: How Our Template Works**  
+### Example: How Our Template Works
 
 - A **developer fills out a form** in **Red Hat Developer Hub**.  
 - The **Template** generates a **new Git repository** with Quarkus boilerplate.  
@@ -116,7 +115,7 @@ With a **Backstage Software Template**, **this entire setup is automated**:
 
 ---
 
-## **📜 Example catalog-info.yaml**
+## Example catalog-info.yaml
 
 When an entity is registered in RHDH, it is defined in a `catalog-info.yaml` file.
 
@@ -145,29 +144,29 @@ spec:
 
 ---
 
-## **🔄 How Entities Are Added to the Software Catalog**
+## How Entities Are Added to the Software Catalog
 
 Entities are **imported and synchronized** in **three ways**:
 
-### ✅ **1. Automatically using plugins**  
+### 1. Automatically using plugins
 - Backstage can scan **GitHub, GitLab, or Kubernetes** to discover entities.  
 
-### ✅ **2. Manually registering entities via the UI**  
+### 2. Manually registering entities via the UI
 - Developers can **add a service manually** by providing a repository link.
 
-### ✅ **3. Declaring entities in the Backstage configuration**  
+### 3. Declaring entities in the Backstage configuration
 - Administrators can define **static entities** inside **Backstage configuration files**.
 
 ---
 
-## **🔄 How Does Red Hat Developer Hub Keep Entities Up to Date?**  
+## How Does Red Hat Developer Hub Keep Entities Up to Date?
 
 ✔️ RHDH is **configured to automatically sync** entity information on a regular schedule.  
 ✔️ If an **entity is stored in Git**, it follows the convention of using a `catalog-info.yaml` file.  
 
 ---
 
-## **📌 Summary**
+## Summary
 
 ✔️ The **Software Catalog** is the **source of truth** for all software in your organization.  
 ✔️ **Entities** such as **Components, APIs, Resources, and Templates** are registered inside the Software Catalog.  
