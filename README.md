@@ -4,32 +4,21 @@
 1. [Workshop Overview](#workshop-overview)
 2. [Agenda](#agenda)
 3. [What to Know Before Writing Software Templates](#what-to-know-before-writing-software-templates)
-   - [Understanding Software Catalog](#understanding-software-catalog)
-   - [Entities in Red Hat Developer Hub](#entities-in-red-hat-developer-hub)
-   - [How Backstage Templates Automate This Process](#how-backstage-templates-automate-this-process)
-   - [How Entities Are Added to the Software Catalog](#how-entities-are-added-to-the-software-catalog)
-   - [Example catalog-info.yaml](#example-catalog-infoyaml)
 4. [Building a Software Template](#building-a-software-template)
-   - [Understanding the Folder Structure](#understanding-the-folder-structure)
-   - [Pre-existing Code (Quarkus & Manifests)](#pre-existing-code-quarkus--manifests)
+   - [Understanding the Software Template for Quarkus](#understanding-the-software-template-for-quarkus)
    - [Creating a Template Step by Step](#creating-a-template-step-by-step)
-     - [What is template.yaml?](#what-is-templateyaml)
-     - [Step 1: Start with a Blank template.yaml](#step-1-start-with-a-blank-templateyaml)
-     - [Step 2: Define User Input Parameters](#step-2-define-user-input-parameters)
-     - [Step 3: Fetch Quarkus Boilerplate Code](#step-3-fetch-quarkus-boilerplate-code)
-     - [Step 4: Create a Git Repository and Push Code](#step-4-create-a-git-repository-and-push-code)
-     - [Step 5: Register the Service in Red Hat Developer Hub](#step-5-register-the-service-in-red-hat-developer-hub)
-     - [Step 6: Deploying with GitOps & ArgoCD](#step-6-deploying-with-gitops--argocd)
-   - [Creating catalog-info.yaml](#creating-catalog-infoyaml)
-     - [Step 1: Start with a Blank catalog-info.yaml](#step-1-start-with-a-blank-catalog-infoyaml)
-     - [Step 2: Add Metadata (Description & Tags)](#step-2-add-metadata-description--tags)
-     - [Step 3: Add Annotations for GitOps and CI/CD](#step-3-add-annotations-for-gitops-and-cicd)
-     - [Step 4: Add Developer Links for OpenShift Dev Spaces](#step-4-add-developer-links-for-openshift-dev-spaces)
-     - [Step 5: Register the API in Red Hat Developer Hub](#step-5-register-the-api-in-red-hat-developer-hub)
-   - [Importing Template in Red Hat Developer Hub](#importing-template-in-red-hat-developer-hub)
-5. [Final Steps](#final-steps)
-
-
+     - [Defining User Input Parameters](#defining-user-input-parameters)
+     - [Fetching Boilerplate Code](#fetching-boilerplate-code)
+     - [Creating a Git Repository](#creating-a-git-repository)
+     - [Registering the Service in RHDH](#registering-the-service-in-rhdh)
+     - [Deploying with GitOps & ArgoCD](#deploying-with-gitops--argocd)
+   - [Building catalog-info.yaml](#building-catalog-infoyaml)
+     - [Adding Metadata](#adding-metadata)
+     - [Adding Annotations for GitOps & CI/CD](#adding-annotations-for-gitops--cicd)
+     - [Adding Developer Links](#adding-developer-links)
+     - [Registering an API in RHDH](#registering-an-api-in-rhdh)
+5. [Importing Template in Red Hat Developer Hub](#importing-template-in-red-hat-developer-hub)
+6. [Final Steps](#final-steps)
 
 ## Workshop Overview  
 This workshop will guide you through creating **Backstage software templates** using **Red Hat Developer Hub (RHDH)**...
@@ -186,6 +175,70 @@ Entities are **imported and synchronized** in **three ways**:
 🚀 **Now let’s start building our Backstage Software Template!**  
 
 ---
+
+## **Understanding the Software Template for Quarkus**
+Before we start building the software template step by step, let’s first understand the **key elements of our setup**.
+
+### **📌 What Are We Working With?**
+For this workshop, we are using an **existing repository** that follows a **standard folder structure** for a **Red Hat Developer Hub (RHDH) software template**.
+
+✔️ The repository contains **pre-existing code** for a **Quarkus microservice**.  
+✔️ It also includes **deployment manifests** required for GitOps-based deployment.  
+✔️ Our focus will be on the **two key building blocks** that make this a software template:  
+   - **`template.yaml`** → Defines how new services are created in RHDH.  
+   - **`catalog-info.yaml`** → Registers the generated service in the **Software Catalog**.
+
+---
+
+### Repository Structure Overview
+
+This repository consists of two main parts:
+1️⃣ **Skeleton (`skeleton/`)** → Contains the **Quarkus microservice code** and additional files that will be copied when a new service is created.  
+2️⃣ **Manifests (`manifests/`)** → Holds **deployment resources** such as Helm charts and ArgoCD configurations, used for deploying the service.
+
+```
+# 📁 template-quarkus-simple
+
+## ├── 📁 manifests
+│   ├── 📁 argocd               # ArgoCD application definitions
+│   ├── 📁 helm                 # Helm charts for deployment
+
+## ├── 📁 skeleton
+│   ├── 📄 catalog-info.yaml     # Service metadata for Red Hat Developer Hub
+│   ├── 📄 README.md             # Documentation for the generated service
+│   ├── 📁 docs                  # TechDocs content for Red Hat Developer Hub
+│   ├── 📄 mvnw                  # Maven wrapper script (Linux/Mac)
+│   ├── 📄 mvnw.cmd              # Maven wrapper script (Windows)
+│   ├── 📄 openapi.yaml          # OpenAPI specification for API registration
+│   ├── 📄 pom.xml               # Maven build file
+│   ├── 📁 src                   # Quarkus service source code
+│   ├── 📁 target                # Compiled build artifacts
+
+## ├── 📄 template.yaml           # Red Hat Developer Hub template definition
+## ├── 📄 README.md               # Documentation for the template
+
+```
+---
+
+### **🔹 Why Focus on `template.yaml` and `catalog-info.yaml`?**
+To convert this repository into a **Red Hat Developer Hub Software Template**, we need to ensure:
+1️⃣ **`template.yaml` is correctly defined** → It will guide RHDH on how to scaffold new services based on this template.  
+2️⃣ **`catalog-info.yaml` is properly structured** → This will ensure that every generated service is correctly registered in the Software Catalog.
+
+---
+
+### **⏭️ What’s Next?**
+Now that we understand the **repository structure** and our **focus areas**, let’s start **building the software template step by step**! 🚀
+
+---
+
+### ***Key Takeaways**
+- **The new TOC** correctly organizes content **before** jumping into hands-on sections.  
+- **The new section "Understanding the Software Template for Quarkus"** provides **clear context** about the repo structure and key elements.  
+- **Everything is now logically structured** under "Building a Software Template."  
+
+
+**Now you can directly copy and paste this into your `.md` file!** 🎯 Let me know if you'd like any final refinements. 🚀
 
 ## Step-by-Step Guide
 ### **🛠 Step 1: Setting Up the Demo**
